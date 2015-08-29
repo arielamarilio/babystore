@@ -1,0 +1,110 @@
+/*!
+ * Start Bootstrap - Shop Homepage HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400);
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    -webkit-font-smoothing: antialiased;
+  font: normal 14px Roboto,arial,sans-serif;
+}
+
+hr {border-color:#ececec;} 
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.panel .btn i,.btn span{
+ color:#666666;
+}
+
+.panel .panel-heading {
+ background-color:#ffffff;
+ font-weight:700;
+ font-size:16px;
+ color:#262626;
+ border-color:#ffffff;
+}
+
+.panel .panel-heading a {
+ font-weight:400;
+ font-size:11px;
+}
+
+.panel .panel-default {
+ border-color:#cccccc;
+}
+
+.panel .panel-thumbnail {
+ padding:0;
+}
+
+.panel .img-circle {
+ width:50px;
+ height:50px;
+}
+
+.list-group-item:first-child,.list-group-item:last-child {
+ border-radius:0;
+}
+h3,h4,h5 { 
+ border:0 solid #efefef; 
+ border-bottom-width:1px;
+ padding-bottom:10px;
+}
+
+.modal-dialog {
+ width: 450px;
+}
+.modal-footer {
+ border-width:0;
+}
+.dropdown-menu {
+ background-color:#f4f4f4;
+ border-color:#f0f0f0;
+ border-radius:0;
+ margin-top:-1px;
+} 

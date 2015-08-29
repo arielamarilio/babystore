@@ -1,0 +1,489 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.37
+4 verbose node symlink /usr/bin/node
+5 verbose readDependencies using package.json deps
+6 verbose install where, deps [ '/var/www/babytip',
+6 verbose install   [ 'laravel-elixir', 'bootstrap-sass', 'gulp' ] ]
+7 info preinstall @
+8 verbose readDependencies using package.json deps
+9 verbose cache add [ 'bootstrap-sass@^3.0.0', null ]
+10 verbose cache add name=undefined spec="bootstrap-sass@^3.0.0" args=["bootstrap-sass@^3.0.0",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'bootstrap-sass@^3.0.0',
+11 verbose parsed url   path: 'bootstrap-sass@^3.0.0',
+11 verbose parsed url   href: 'bootstrap-sass@^3.0.0' }
+12 verbose cache add [ 'gulp@^3.8.8', null ]
+13 verbose cache add name=undefined spec="gulp@^3.8.8" args=["gulp@^3.8.8",null]
+14 verbose parsed url { protocol: null,
+14 verbose parsed url   slashes: null,
+14 verbose parsed url   auth: null,
+14 verbose parsed url   host: null,
+14 verbose parsed url   port: null,
+14 verbose parsed url   hostname: null,
+14 verbose parsed url   hash: null,
+14 verbose parsed url   search: null,
+14 verbose parsed url   query: null,
+14 verbose parsed url   pathname: 'gulp@^3.8.8',
+14 verbose parsed url   path: 'gulp@^3.8.8',
+14 verbose parsed url   href: 'gulp@^3.8.8' }
+15 verbose cache add [ 'laravel-elixir@^3.0.0', null ]
+16 verbose cache add name=undefined spec="laravel-elixir@^3.0.0" args=["laravel-elixir@^3.0.0",null]
+17 verbose parsed url { protocol: null,
+17 verbose parsed url   slashes: null,
+17 verbose parsed url   auth: null,
+17 verbose parsed url   host: null,
+17 verbose parsed url   port: null,
+17 verbose parsed url   hostname: null,
+17 verbose parsed url   hash: null,
+17 verbose parsed url   search: null,
+17 verbose parsed url   query: null,
+17 verbose parsed url   pathname: 'laravel-elixir@^3.0.0',
+17 verbose parsed url   path: 'laravel-elixir@^3.0.0',
+17 verbose parsed url   href: 'laravel-elixir@^3.0.0' }
+18 verbose cache add name="bootstrap-sass" spec="^3.0.0" args=["bootstrap-sass","^3.0.0"]
+19 verbose parsed url { protocol: null,
+19 verbose parsed url   slashes: null,
+19 verbose parsed url   auth: null,
+19 verbose parsed url   host: null,
+19 verbose parsed url   port: null,
+19 verbose parsed url   hostname: null,
+19 verbose parsed url   hash: null,
+19 verbose parsed url   search: null,
+19 verbose parsed url   query: null,
+19 verbose parsed url   pathname: '^3.0.0',
+19 verbose parsed url   path: '^3.0.0',
+19 verbose parsed url   href: '^3.0.0' }
+20 verbose addNamed [ 'bootstrap-sass', '^3.0.0' ]
+21 verbose addNamed [ null, '>=3.0.0-0 <4.0.0-0' ]
+22 verbose cache add name="gulp" spec="^3.8.8" args=["gulp","^3.8.8"]
+23 verbose parsed url { protocol: null,
+23 verbose parsed url   slashes: null,
+23 verbose parsed url   auth: null,
+23 verbose parsed url   host: null,
+23 verbose parsed url   port: null,
+23 verbose parsed url   hostname: null,
+23 verbose parsed url   hash: null,
+23 verbose parsed url   search: null,
+23 verbose parsed url   query: null,
+23 verbose parsed url   pathname: '^3.8.8',
+23 verbose parsed url   path: '^3.8.8',
+23 verbose parsed url   href: '^3.8.8' }
+24 verbose addNamed [ 'gulp', '^3.8.8' ]
+25 verbose addNamed [ null, '>=3.8.8-0 <4.0.0-0' ]
+26 verbose cache add name="laravel-elixir" spec="^3.0.0" args=["laravel-elixir","^3.0.0"]
+27 verbose parsed url { protocol: null,
+27 verbose parsed url   slashes: null,
+27 verbose parsed url   auth: null,
+27 verbose parsed url   host: null,
+27 verbose parsed url   port: null,
+27 verbose parsed url   hostname: null,
+27 verbose parsed url   hash: null,
+27 verbose parsed url   search: null,
+27 verbose parsed url   query: null,
+27 verbose parsed url   pathname: '^3.0.0',
+27 verbose parsed url   path: '^3.0.0',
+27 verbose parsed url   href: '^3.0.0' }
+28 verbose addNamed [ 'laravel-elixir', '^3.0.0' ]
+29 verbose addNamed [ null, '>=3.0.0-0 <4.0.0-0' ]
+30 silly lockFile d9f814aa-bootstrap-sass-3-0-0 bootstrap-sass@^3.0.0
+31 verbose lock bootstrap-sass@^3.0.0 /home/ariel/.npm/d9f814aa-bootstrap-sass-3-0-0.lock
+32 silly lockFile ed47fb09-gulp-3-8-8 gulp@^3.8.8
+33 verbose lock gulp@^3.8.8 /home/ariel/.npm/ed47fb09-gulp-3-8-8.lock
+34 silly lockFile 6f656a2c-laravel-elixir-3-0-0 laravel-elixir@^3.0.0
+35 verbose lock laravel-elixir@^3.0.0 /home/ariel/.npm/6f656a2c-laravel-elixir-3-0-0.lock
+36 silly addNameRange { name: 'bootstrap-sass',
+36 silly addNameRange   range: '>=3.0.0-0 <4.0.0-0',
+36 silly addNameRange   hasData: false }
+37 silly addNameRange { name: 'gulp', range: '>=3.8.8-0 <4.0.0-0', hasData: false }
+38 silly addNameRange { name: 'laravel-elixir',
+38 silly addNameRange   range: '>=3.0.0-0 <4.0.0-0',
+38 silly addNameRange   hasData: false }
+39 verbose request where is /bootstrap-sass
+40 verbose request registry https://registry.npmjs.org/
+41 verbose request id e00339effac82f27
+42 verbose url raw /bootstrap-sass
+43 verbose url resolving [ 'https://registry.npmjs.org/', './bootstrap-sass' ]
+44 verbose url resolved https://registry.npmjs.org/bootstrap-sass
+45 verbose request where is https://registry.npmjs.org/bootstrap-sass
+46 info trying registry request attempt 1 at 22:01:15
+47 http GET https://registry.npmjs.org/bootstrap-sass
+48 verbose request where is /gulp
+49 verbose request registry https://registry.npmjs.org/
+50 verbose url raw /gulp
+51 verbose url resolving [ 'https://registry.npmjs.org/', './gulp' ]
+52 verbose url resolved https://registry.npmjs.org/gulp
+53 verbose request where is https://registry.npmjs.org/gulp
+54 info trying registry request attempt 1 at 22:01:15
+55 http GET https://registry.npmjs.org/gulp
+56 verbose request where is /laravel-elixir
+57 verbose request registry https://registry.npmjs.org/
+58 verbose url raw /laravel-elixir
+59 verbose url resolving [ 'https://registry.npmjs.org/', './laravel-elixir' ]
+60 verbose url resolved https://registry.npmjs.org/laravel-elixir
+61 verbose request where is https://registry.npmjs.org/laravel-elixir
+62 info trying registry request attempt 1 at 22:01:15
+63 http GET https://registry.npmjs.org/laravel-elixir
+64 http 200 https://registry.npmjs.org/bootstrap-sass
+65 silly registry.get cb [ 200,
+65 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+65 silly registry.get     etag: '"DYEQOTF2DOLGE1B94NACDGFP6"',
+65 silly registry.get     'content-type': 'application/json',
+65 silly registry.get     'cache-control': 'max-age=60',
+65 silly registry.get     'content-length': '24288',
+65 silly registry.get     'accept-ranges': 'bytes',
+65 silly registry.get     date: 'Fri, 28 Aug 2015 02:01:17 GMT',
+65 silly registry.get     via: '1.1 varnish',
+65 silly registry.get     age: '0',
+65 silly registry.get     connection: 'keep-alive',
+65 silly registry.get     'x-served-by': 'cache-iad2133-IAD',
+65 silly registry.get     'x-cache': 'HIT',
+65 silly registry.get     'x-cache-hits': '1',
+65 silly registry.get     'x-timer': 'S1440727277.062146,VS0,VE347',
+65 silly registry.get     vary: 'Accept' } ]
+66 silly addNameRange number 2 { name: 'bootstrap-sass',
+66 silly addNameRange   range: '>=3.0.0-0 <4.0.0-0',
+66 silly addNameRange   hasData: true }
+67 silly addNameRange versions [ 'bootstrap-sass',
+67 silly addNameRange   [ '2.3.2',
+67 silly addNameRange     '3.1.1',
+67 silly addNameRange     '3.2.0',
+67 silly addNameRange     '3.3.0',
+67 silly addNameRange     '3.3.1',
+67 silly addNameRange     '3.3.2',
+67 silly addNameRange     '3.3.3',
+67 silly addNameRange     '3.3.4',
+67 silly addNameRange     '3.3.5' ] ]
+68 verbose addNamed [ 'bootstrap-sass', '3.3.5' ]
+69 verbose addNamed [ '3.3.5', '3.3.5' ]
+70 silly lockFile 03419ed4-bootstrap-sass-3-3-5 bootstrap-sass@3.3.5
+71 verbose lock bootstrap-sass@3.3.5 /home/ariel/.npm/03419ed4-bootstrap-sass-3-3-5.lock
+72 silly lockFile aa156063-ap-sass-bootstrap-sass-3-3-5-tgz https://registry.npmjs.org/bootstrap-sass/-/bootstrap-sass-3.3.5.tgz
+73 verbose lock https://registry.npmjs.org/bootstrap-sass/-/bootstrap-sass-3.3.5.tgz /home/ariel/.npm/aa156063-ap-sass-bootstrap-sass-3-3-5-tgz.lock
+74 verbose addRemoteTarball [ 'https://registry.npmjs.org/bootstrap-sass/-/bootstrap-sass-3.3.5.tgz',
+74 verbose addRemoteTarball   '89f213751ee01cde0dc1f63a51e9b3521dd20ebc' ]
+75 info retry fetch attempt 1 at 22:01:17
+76 verbose fetch to= /tmp/npm-3560-INStt_Ka/registry.npmjs.org/bootstrap-sass/-/bootstrap-sass-3.3.5.tgz
+77 http GET https://registry.npmjs.org/bootstrap-sass/-/bootstrap-sass-3.3.5.tgz
+78 http 200 https://registry.npmjs.org/gulp
+79 silly registry.get cb [ 200,
+79 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+79 silly registry.get     etag: '"3Y3S7C73I89Y2HXXDH7RPCUKG"',
+79 silly registry.get     'content-type': 'application/json',
+79 silly registry.get     'cache-control': 'max-age=60',
+79 silly registry.get     'content-length': '105710',
+79 silly registry.get     'accept-ranges': 'bytes',
+79 silly registry.get     date: 'Fri, 28 Aug 2015 02:01:17 GMT',
+79 silly registry.get     via: '1.1 varnish',
+79 silly registry.get     age: '60',
+79 silly registry.get     connection: 'keep-alive',
+79 silly registry.get     'x-served-by': 'cache-iad2134-IAD',
+79 silly registry.get     'x-cache': 'HIT',
+79 silly registry.get     'x-cache-hits': '1',
+79 silly registry.get     'x-timer': 'S1440727277.069356,VS0,VE0',
+79 silly registry.get     vary: 'Accept' } ]
+80 silly addNameRange number 2 { name: 'gulp', range: '>=3.8.8-0 <4.0.0-0', hasData: true }
+81 silly addNameRange versions [ 'gulp',
+81 silly addNameRange   [ '0.0.1',
+81 silly addNameRange     '0.0.2',
+81 silly addNameRange     '0.0.3',
+81 silly addNameRange     '0.0.4',
+81 silly addNameRange     '0.0.5',
+81 silly addNameRange     '0.0.7',
+81 silly addNameRange     '0.0.8',
+81 silly addNameRange     '0.0.9',
+81 silly addNameRange     '0.1.0',
+81 silly addNameRange     '0.2.0',
+81 silly addNameRange     '1.0.0',
+81 silly addNameRange     '1.1.0',
+81 silly addNameRange     '1.2.0',
+81 silly addNameRange     '1.2.1',
+81 silly addNameRange     '2.0.0',
+81 silly addNameRange     '2.0.1',
+81 silly addNameRange     '2.1.0',
+81 silly addNameRange     '2.2.0',
+81 silly addNameRange     '2.3.0',
+81 silly addNameRange     '2.4.0',
+81 silly addNameRange     '2.4.1',
+81 silly addNameRange     '2.6.0',
+81 silly addNameRange     '2.6.1',
+81 silly addNameRange     '2.7.0',
+81 silly addNameRange     '3.0.0',
+81 silly addNameRange     '3.1.1',
+81 silly addNameRange     '3.1.2',
+81 silly addNameRange     '3.1.3',
+81 silly addNameRange     '3.1.4',
+81 silly addNameRange     '3.2.0',
+81 silly addNameRange     '3.2.1',
+81 silly addNameRange     '3.2.2',
+81 silly addNameRange     '3.2.3',
+81 silly addNameRange     '3.2.4',
+81 silly addNameRange     '3.2.5',
+81 silly addNameRange     '3.3.0',
+81 silly addNameRange     '3.3.1',
+81 silly addNameRange     '3.3.2',
+81 silly addNameRange     '3.3.4',
+81 silly addNameRange     '3.4.0',
+81 silly addNameRange     '3.5.0',
+81 silly addNameRange     '3.5.1',
+81 silly addNameRange     '3.5.2',
+81 silly addNameRange     '3.5.5',
+81 silly addNameRange     '3.5.6',
+81 silly addNameRange     '3.6.0',
+81 silly addNameRange     '3.6.1',
+81 silly addNameRange     '3.6.2',
+81 silly addNameRange     '3.7.0',
+81 silly addNameRange     '3.8.0',
+81 silly addNameRange     '3.8.1',
+81 silly addNameRange     '3.8.2',
+81 silly addNameRange     '3.8.3',
+81 silly addNameRange     '3.8.4',
+81 silly addNameRange     '3.8.5',
+81 silly addNameRange     '3.8.6',
+81 silly addNameRange     '3.8.7',
+81 silly addNameRange     '3.8.8',
+81 silly addNameRange     '3.8.9',
+81 silly addNameRange     '3.8.10',
+81 silly addNameRange     '3.8.11',
+81 silly addNameRange     '3.9.0' ] ]
+82 verbose addNamed [ 'gulp', '3.9.0' ]
+83 verbose addNamed [ '3.9.0', '3.9.0' ]
+84 silly lockFile c2697a61-gulp-3-9-0 gulp@3.9.0
+85 verbose lock gulp@3.9.0 /home/ariel/.npm/c2697a61-gulp-3-9-0.lock
+86 silly lockFile af4766b8-ry-npmjs-org-gulp-gulp-3-9-0-tgz https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz
+87 verbose lock https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz /home/ariel/.npm/af4766b8-ry-npmjs-org-gulp-gulp-3-9-0-tgz.lock
+88 verbose addRemoteTarball [ 'https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz',
+88 verbose addRemoteTarball   'cf1fba4cb558bb8c6ae6c9613f583ae2620d214a' ]
+89 info retry fetch attempt 1 at 22:01:18
+90 verbose fetch to= /tmp/npm-3560-INStt_Ka/registry.npmjs.org/gulp/-/gulp-3.9.0.tgz
+91 http GET https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz
+92 http 200 https://registry.npmjs.org/bootstrap-sass/-/bootstrap-sass-3.3.5.tgz
+93 http 200 https://registry.npmjs.org/laravel-elixir
+94 silly registry.get cb [ 200,
+94 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+94 silly registry.get     etag: '"D79UUNF3STEW9IOPGK7HCKFRR"',
+94 silly registry.get     'content-type': 'application/json',
+94 silly registry.get     'cache-control': 'max-age=60',
+94 silly registry.get     'content-length': '253059',
+94 silly registry.get     'accept-ranges': 'bytes',
+94 silly registry.get     date: 'Fri, 28 Aug 2015 02:01:17 GMT',
+94 silly registry.get     via: '1.1 varnish',
+94 silly registry.get     age: '0',
+94 silly registry.get     connection: 'keep-alive',
+94 silly registry.get     'x-served-by': 'cache-iad2120-IAD',
+94 silly registry.get     'x-cache': 'MISS',
+94 silly registry.get     'x-cache-hits': '0',
+94 silly registry.get     'x-timer': 'S1440727277.460551,VS0,VE91',
+94 silly registry.get     vary: 'Accept' } ]
+95 silly addNameRange number 2 { name: 'laravel-elixir',
+95 silly addNameRange   range: '>=3.0.0-0 <4.0.0-0',
+95 silly addNameRange   hasData: true }
+96 silly addNameRange versions [ 'laravel-elixir',
+96 silly addNameRange   [ '0.1.0',
+96 silly addNameRange     '0.1.1',
+96 silly addNameRange     '0.1.2',
+96 silly addNameRange     '0.1.3',
+96 silly addNameRange     '0.1.4',
+96 silly addNameRange     '0.1.5',
+96 silly addNameRange     '0.1.6',
+96 silly addNameRange     '0.1.7',
+96 silly addNameRange     '0.1.8',
+96 silly addNameRange     '0.1.9',
+96 silly addNameRange     '0.2.0',
+96 silly addNameRange     '0.2.1',
+96 silly addNameRange     '0.2.2',
+96 silly addNameRange     '0.3.0',
+96 silly addNameRange     '0.3.1',
+96 silly addNameRange     '0.3.2',
+96 silly addNameRange     '0.3.3',
+96 silly addNameRange     '0.3.4',
+96 silly addNameRange     '0.3.5',
+96 silly addNameRange     '0.3.7',
+96 silly addNameRange     '0.3.8',
+96 silly addNameRange     '0.3.9',
+96 silly addNameRange     '0.3.10',
+96 silly addNameRange     '0.3.11',
+96 silly addNameRange     '0.4.0',
+96 silly addNameRange     '0.4.1',
+96 silly addNameRange     '0.4.3',
+96 silly addNameRange     '0.4.4',
+96 silly addNameRange     '0.4.5',
+96 silly addNameRange     '0.4.6',
+96 silly addNameRange     '0.4.7',
+96 silly addNameRange     '0.4.8',
+96 silly addNameRange     '0.4.9',
+96 silly addNameRange     '0.4.10',
+96 silly addNameRange     '0.4.11',
+96 silly addNameRange     '0.4.12',
+96 silly addNameRange     '0.4.13',
+96 silly addNameRange     '0.4.14',
+96 silly addNameRange     '0.4.15',
+96 silly addNameRange     '0.4.16',
+96 silly addNameRange     '0.4.17',
+96 silly addNameRange     '0.5.0',
+96 silly addNameRange     '0.5.1',
+96 silly addNameRange     '0.5.2',
+96 silly addNameRange     '0.5.3',
+96 silly addNameRange     '0.5.4',
+96 silly addNameRange     '0.5.5',
+96 silly addNameRange     '0.5.6',
+96 silly addNameRange     '0.5.7',
+96 silly addNameRange     '0.5.8',
+96 silly addNameRange     '0.6.0',
+96 silly addNameRange     '0.6.1',
+96 silly addNameRange     '0.6.2',
+96 silly addNameRange     '0.6.3',
+96 silly addNameRange     '0.6.4',
+96 silly addNameRange     '0.6.5',
+96 silly addNameRange     '0.6.6',
+96 silly addNameRange     '0.7.0',
+96 silly addNameRange     '0.6.7',
+96 silly addNameRange     '0.6.8',
+96 silly addNameRange     '0.7.1',
+96 silly addNameRange     '0.7.3',
+96 silly addNameRange     '0.7.4',
+96 silly addNameRange     '0.7.5',
+96 silly addNameRange     '0.7.6',
+96 silly addNameRange     '0.7.7',
+96 silly addNameRange     '0.7.8',
+96 silly addNameRange     '0.7.9',
+96 silly addNameRange     '0.7.10',
+96 silly addNameRange     '0.7.11',
+96 silly addNameRange     '0.8.0',
+96 silly addNameRange     '0.8.1',
+96 silly addNameRange     '0.9.1',
+96 silly addNameRange     '0.10.0',
+96 silly addNameRange     '0.10.1',
+96 silly addNameRange     '0.10.2',
+96 silly addNameRange     '0.10.3',
+96 silly addNameRange     '0.10.4',
+96 silly addNameRange     '0.10.5',
+96 silly addNameRange     '0.10.6',
+96 silly addNameRange     '0.10.7',
+96 silly addNameRange     '0.11.0',
+96 silly addNameRange     '0.12.0',
+96 silly addNameRange     '0.12.2',
+96 silly addNameRange     '0.12.3',
+96 silly addNameRange     '0.13.0',
+96 silly addNameRange     '0.13.1',
+96 silly addNameRange     '0.13.2',
+96 silly addNameRange     '0.13.3',
+96 silly addNameRange     '0.14.0',
+96 silly addNameRange     '0.14.2',
+96 silly addNameRange     '0.14.3',
+96 silly addNameRange     '0.14.4',
+96 silly addNameRange     '0.15.0',
+96 silly addNameRange     '0.15.1',
+96 silly addNameRange     '0.15.2',
+96 silly addNameRange     '0.15.3',
+96 silly addNameRange     '0.15.4',
+96 silly addNameRange     '0.15.5',
+96 silly addNameRange     '0.16.0',
+96 silly addNameRange     '0.16.1',
+96 silly addNameRange     '0.16.2',
+96 silly addNameRange     '0.16.3',
+96 silly addNameRange     '0.18.0',
+96 silly addNameRange     '0.18.1',
+96 silly addNameRange     '0.18.2',
+96 silly addNameRange     '0.18.3',
+96 silly addNameRange     '0.18.4',
+96 silly addNameRange     '0.18.5',
+96 silly addNameRange     '0.18.6',
+96 silly addNameRange     '0.18.7',
+96 silly addNameRange     '1.0.1',
+96 silly addNameRange     '1.0.2',
+96 silly addNameRange     '1.0.3',
+96 silly addNameRange     '2.0.0',
+96 silly addNameRange     '2.0.1',
+96 silly addNameRange     '2.1.0',
+96 silly addNameRange     '2.1.1',
+96 silly addNameRange     '2.1.2',
+96 silly addNameRange     '2.2.0',
+96 silly addNameRange     '2.2.1',
+96 silly addNameRange     '2.2.2',
+96 silly addNameRange     '2.2.3',
+96 silly addNameRange     '2.2.4',
+96 silly addNameRange     '2.3.0',
+96 silly addNameRange     '2.3.1',
+96 silly addNameRange     '2.3.2',
+96 silly addNameRange     '2.3.3',
+96 silly addNameRange     '2.3.4',
+96 silly addNameRange     '2.3.5',
+96 silly addNameRange     '2.3.6',
+96 silly addNameRange     '2.3.8',
+96 silly addNameRange     '2.3.9',
+96 silly addNameRange     '2.3.10',
+96 silly addNameRange     '2.3.11',
+96 silly addNameRange     '2.3.12',
+96 silly addNameRange     '2.3.13',
+96 silly addNameRange     '3.0.0-beta1',
+96 silly addNameRange     '3.0.0-beta2',
+96 silly addNameRange     '3.0.0',
+96 silly addNameRange     '3.0.1',
+96 silly addNameRange     '3.0.3',
+96 silly addNameRange     '3.0.4',
+96 silly addNameRange     '3.0.5',
+96 silly addNameRange     '3.0.6',
+96 silly addNameRange     '3.0.7',
+96 silly addNameRange     '3.1.0',
+96 silly addNameRange     '3.1.1',
+96 silly addNameRange     '3.1.2',
+96 silly addNameRange     '3.2.1',
+96 silly addNameRange     '3.2.2',
+96 silly addNameRange     '3.2.3',
+96 silly addNameRange     '3.2.4',
+96 silly addNameRange     '3.2.5',
+96 silly addNameRange     '3.2.6' ] ]
+97 verbose addNamed [ 'laravel-elixir', '3.2.6' ]
+98 verbose addNamed [ '3.2.6', '3.2.6' ]
+99 silly lockFile 1c4bf673-laravel-elixir-3-2-6 laravel-elixir@3.2.6
+100 verbose lock laravel-elixir@3.2.6 /home/ariel/.npm/1c4bf673-laravel-elixir-3-2-6.lock
+101 silly lockFile b9b39515--elixir-laravel-elixir-3-2-6-tgz https://registry.npmjs.org/laravel-elixir/-/laravel-elixir-3.2.6.tgz
+102 verbose lock https://registry.npmjs.org/laravel-elixir/-/laravel-elixir-3.2.6.tgz /home/ariel/.npm/b9b39515--elixir-laravel-elixir-3-2-6-tgz.lock
+103 verbose addRemoteTarball [ 'https://registry.npmjs.org/laravel-elixir/-/laravel-elixir-3.2.6.tgz',
+103 verbose addRemoteTarball   '924e2d0fa0c5936d1d2fc428cce222ab96f0adff' ]
+104 info retry fetch attempt 1 at 22:01:19
+105 verbose fetch to= /tmp/npm-3560-INStt_Ka/registry.npmjs.org/laravel-elixir/-/laravel-elixir-3.2.6.tgz
+106 http GET https://registry.npmjs.org/laravel-elixir/-/laravel-elixir-3.2.6.tgz
+107 http 200 https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz
+108 silly lockFile af4766b8-ry-npmjs-org-gulp-gulp-3-9-0-tgz https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz
+109 silly lockFile af4766b8-ry-npmjs-org-gulp-gulp-3-9-0-tgz https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz
+110 silly lockFile c2697a61-gulp-3-9-0 gulp@3.9.0
+111 silly lockFile c2697a61-gulp-3-9-0 gulp@3.9.0
+112 silly lockFile ed47fb09-gulp-3-8-8 gulp@^3.8.8
+113 silly lockFile ed47fb09-gulp-3-8-8 gulp@^3.8.8
+114 http 200 https://registry.npmjs.org/laravel-elixir/-/laravel-elixir-3.2.6.tgz
+115 silly lockFile b9b39515--elixir-laravel-elixir-3-2-6-tgz https://registry.npmjs.org/laravel-elixir/-/laravel-elixir-3.2.6.tgz
+116 silly lockFile b9b39515--elixir-laravel-elixir-3-2-6-tgz https://registry.npmjs.org/laravel-elixir/-/laravel-elixir-3.2.6.tgz
+117 silly lockFile 1c4bf673-laravel-elixir-3-2-6 laravel-elixir@3.2.6
+118 silly lockFile 1c4bf673-laravel-elixir-3-2-6 laravel-elixir@3.2.6
+119 silly lockFile 6f656a2c-laravel-elixir-3-0-0 laravel-elixir@^3.0.0
+120 silly lockFile 6f656a2c-laravel-elixir-3-0-0 laravel-elixir@^3.0.0
+121 silly lockFile aa156063-ap-sass-bootstrap-sass-3-3-5-tgz https://registry.npmjs.org/bootstrap-sass/-/bootstrap-sass-3.3.5.tgz
+122 silly lockFile aa156063-ap-sass-bootstrap-sass-3-3-5-tgz https://registry.npmjs.org/bootstrap-sass/-/bootstrap-sass-3.3.5.tgz
+123 silly lockFile 03419ed4-bootstrap-sass-3-3-5 bootstrap-sass@3.3.5
+124 silly lockFile 03419ed4-bootstrap-sass-3-3-5 bootstrap-sass@3.3.5
+125 silly lockFile d9f814aa-bootstrap-sass-3-0-0 bootstrap-sass@^3.0.0
+126 silly lockFile d9f814aa-bootstrap-sass-3-0-0 bootstrap-sass@^3.0.0
+127 error Error: EACCES, mkdir '/home/ariel/.npm/gulp/3.9.0'
+127 error  { [Error: EACCES, mkdir '/home/ariel/.npm/gulp/3.9.0'] errno: 3, code: 'EACCES', path: '/home/ariel/.npm/gulp/3.9.0' }
+128 error Please try running this command again as root/Administrator.
+129 error System Linux 3.13.0-61-generic
+130 error command "/usr/bin/node" "/usr/bin/npm" "install"
+131 error cwd /var/www/babytip
+132 error node -v v0.10.37
+133 error npm -v 1.4.28
+134 error path /home/ariel/.npm/gulp/3.9.0
+135 error code EACCES
+136 error errno 3
+137 error stack Error: EACCES, mkdir '/home/ariel/.npm/gulp/3.9.0'
+138 verbose exit [ 3, true ]
