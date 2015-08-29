@@ -137,7 +137,7 @@
             <div class="container">
                 <div class="row">
                     <!-- Sidebar -->
-                    <div class="col-sm-4 blog-sidebar">
+                    <div class="col-sm-3 blog-sidebar">
                         <h4>Canais</h4>
                         <ul class="blog-categories">
                             <li><a href="{{ route('users.edit') }}">Meus dados</a></li>
@@ -146,7 +146,7 @@
                         </ul>
                     </div>
                     <!-- End Sidebar -->
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                         @yield('content')
                     </div>
                     <!-- End Blog Post -->
@@ -214,6 +214,53 @@
         <script src="/theme/front-end/js/jquery.bxslider.js"></script>
         <script src="/theme/front-end/js/main-menu.js"></script>
         <script src="/theme/front-end/js/template.js"></script>
+
+        <!-- google web fonts -->
+        <script>
+            WebFontConfig = {
+                google: {
+                    families: [
+                        'Source+Code+Pro:400,700:latin',
+                        'Roboto:400,300,500,700,400italic:latin'
+                    ]
+                }
+            };
+            (function() {
+                var wf = document.createElement('script');
+                wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+                wf.type = 'text/javascript';
+                wf.async = 'true';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(wf, s);
+            })();
+        </script>
+        <!-- common functions -->
+        <script src="/theme/altair/assets/js/common.min.js"></script>
+        <!-- uikit functions -->
+        <script src="/theme/altair/assets/js/uikit_custom.min.js"></script>
+        <!-- altair common functions/helpers -->
+        <script src="/theme/altair/assets/js/altair_admin_common.min.js"></script>
+
+        @yield('extra-include')
+
+        <script>
+            $(function() {
+                // enable hires images
+                altair_helpers.retina_images();
+                // fastClick (touch devices)
+                if(Modernizr.touch) {
+                    FastClick.attach(document.body);
+                }
+            });
+        </script>
+
+        <!-- page specific plugins -->
+        <script src="/theme/altair/bower_components/ionrangeslider/js/ion.rangeSlider.min.js"></script>
+        <!-- inputmask-->
+        <script src="/theme/altair/bower_components/jquery.inputmask/dist/jquery.inputmask.bundle.min.js"></script>
+        <!--  forms advanced functions -->
+        <script src="/theme/altair/assets/js/pages/forms_advanced.min.js"></script>
 
     </body>
 </html>

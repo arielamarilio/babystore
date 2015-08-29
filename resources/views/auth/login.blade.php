@@ -18,24 +18,24 @@
     </div>
 </div>
 
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <strong>Ooops!</strong> Erro com o preenchimento do formulário :(<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 <div class="section">
     <div class="container">
         <div class="row">
-            <div class="col-sm-3 social-login"></div>
+            <div class="col-sm-2 social-login"></div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <div class="basic-login">
+
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <strong>Ooops!</strong> Erro com o preenchimento do formulário :(<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                     <form role="form" role="form" method="POST" action="{{ url('/auth/login') }}" autocomplete="off">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -75,7 +75,7 @@
                     <p>É novo por aqui? <a href="{{ url('/auth/register') }}">Cadastre-se agora!</a></p>
                 </div>
             </div>
-            <div class="col-sm-3 social-login"></div>
+            <div class="col-sm-2 social-login"></div>
         </div>
     </div>
 </div>

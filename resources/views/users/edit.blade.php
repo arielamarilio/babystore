@@ -2,84 +2,67 @@
 
 @section('content')
 
-<div class="row">
-	<div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="panel-title">
-                <i class="glyphicon glyphicon-cog pull-right"></i>
-                <h4>Meus dados</h4>
-                <small>Dados cadastrais da sua conta</small>
-            </div>
-        </div>
-        <div class="panel-body">
+<div class="basic-login">
 
-			@if (count($errors) > 0)
-				<div class="alert alert-danger">
-					<strong>Ooops!</strong> Erro com o preenchimento do formulário :(<br><br>
-					<ul>
-						@foreach ($errors->all() as $error)
-							<li>{{ $error }}</li>
-						@endforeach
-					</ul>
+	{!! Form::open(array('route' => ['users.internal_update'], 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) !!}
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+		<h3 class="heading_a uk-margin-bottom">Meus dados</h3>
+
+		@if (count($errors) > 0)
+		    <div class="alert alert-danger">
+		        <strong>Ooops!</strong> Erro com o preenchimento do formulário :(<br>
+	            @foreach ($errors->all() as $error)
+	            - {{ $error }} <br>
+	            @endforeach
+		    </div>
+		@endif
+
+		<div class="uk-form-row">
+			<div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-medium-4-5">
+					<label>Nome</label>
+					<input type="text" class="md-input" name="name" value="{{ Auth::user()->name }}">
+					<span class="md-input-bar"></span>
+				</div>	
+				<div class="uk-width-medium-1-5">
+					<label for="phone">Telefone</label>
+					<input class="md-input masked_input" name="phone" type="text" data-inputmask="'mask': '99 - 9999-9999'" data-inputmask-showmaskonhover="false" value="{{ Auth::user()->phone }}">
+					<span class="md-input-bar"></span>
 				</div>
-			@endif
+            </div>	
+        </div>	
 
-				
+		<div class="uk-form-row">
+			<div class="md-input-wrapper md-input-filled">
+				<label>E-mail</label>
+				<input type="email" class="md-input" name="email" value="{{ Auth::user()->email }}">
+				<span class="md-input-bar"></span>
+			</div>
+		</div>
+		<div class="uk-form-row">
+			<div class="md-input-wrapper">
+				<label>Alterar senha</label>
+				<input type="password" class="md-input" name="password">
+				<span class="md-input-bar"></span>
+			</div>
+		</div>
+		<div class="uk-form-row">
+			<div class="md-input-wrapper">
+				<label>Confirmar senha</label>
+				<input type="password" class="md-input" name="password_confirmation">
+				<span class="md-input-bar"></span>
+			</div>
+		</div>
 
-			{!! Form::open(array('route' => ['users.internal_update'], 'method' => 'post', 'class' => 'form-horizontal')) !!}
+		<div class="uk-form-row">
+			<button type="submit" class="btn btn-default btn-lg btn-block">
+				Alterar dados
+			</button>
+		</div>
+		
+	{!! Form::close() !!}
 
-				<div class="form-group">
-					<label class="col-md-4 control-label">Nome</label>
-					<div class="col-md-6">
-						<input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-md-4 control-label">E-mail</label>
-					<div class="col-md-6">
-						<input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-md-4 control-label">Telefone</label>
-					<div class="col-xs-2">
-						<input type="text" class="form-control" name="phone" id="phone"  value="{{ Auth::user()->phone }}">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-md-4 control-label">Senha</label>
-					<div class="col-xs-4">
-						<input type="password" class="form-control" name="password">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-md-4 control-label">Confirmar senha</label>
-					<div class="col-xs-4">
-						<input type="password" class="form-control" name="password_confirmation">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-md-6 col-md-offset-4">
-						<button type="submit" class="btn btn-primary">
-							Alterar dados
-						</button>
-					</div>
-				</div>
-			
-			{!! Form::close() !!}
-        </div>
-        <!--/panel content-->
-    </div>
-
-	<script type="text/javascript">
-	$( document ).ready(function( $ ) {
-		$(".phone").mask("(99) 9999-9999");
-	});
-	</script>
 </div>
+
 @endsection
