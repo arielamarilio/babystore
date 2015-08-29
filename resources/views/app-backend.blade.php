@@ -21,6 +21,13 @@
         <link rel="stylesheet" href="/theme/front-end/css/main.css">
 
         <script src="/theme/front-end/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+        <!-- uikit -->
+        <link rel="stylesheet" href="/theme/altair/bower_components/uikit/css/uikit.almost-flat.min.css" media="all">
+        <!-- flag icons -->
+        <link rel="stylesheet" href="/theme/altair/assets/icons/flags/flags.min.css" media="all">
+        <!-- altair admin -->
+        <link rel="stylesheet" href="/theme/altair/assets/css/main.min.css" media="all">
     </head>
     <body>
         <!--[if lt IE 7]>

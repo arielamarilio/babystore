@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="/theme/altair/bower_components/uikit/css/uikit.almost-flat.min.css" media="all">
         <!-- flag icons -->
         <link rel="stylesheet" href="/theme/altair/assets/icons/flags/flags.min.css" media="all">
-        
+
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -220,6 +220,9 @@
         <script src="/theme/altair/assets/js/uikit_custom.min.js"></script>
         <!-- altair common functions/helpers -->
         <script src="/theme/altair/assets/js/altair_admin_common.min.js"></script>
+
+        @yield('extra-include')
+
         <script>
             $(function() {
                 // enable hires images
