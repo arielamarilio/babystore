@@ -73,9 +73,9 @@
             </div>	
         </div>	
 
-        <div class="uk-form-row">
+        <div class="uk-form-row  md-input-filled">
 			<div class="uk-grid" data-uk-grid-margin>
-                <div class="uk-width-medium-5-10">
+                <div class="uk-width-medium-5-10 ">
 
                 	<label>Preço original:</label>
                 	<input type="text" class="md-input" name="origin_price" id="origin_price">
@@ -153,6 +153,14 @@
 <script type="text/javascript">
 	$(document).ready(function($){
 	    $("#origin_price").maskMoney({
+	    	prefix:'R$ ',
+			symbol: 'R$ ', 
+			showSymbol: true, 
+			thousands: '.', 
+			decimal: ',', 
+			symbolStay: true
+		});
+		$("#sale_price").maskMoney({
 	    	prefix:'R$ ',
 			symbol: 'R$ ', 
 			showSymbol: true, 
