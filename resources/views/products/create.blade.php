@@ -76,23 +76,59 @@
         <div class="uk-form-row  md-input-filled">
 			<div class="uk-grid" data-uk-grid-margin>
                 <div class="uk-width-medium-5-10 ">
-
                 	<label>Preço original:</label>
                 	<input type="text" class="md-input" name="origin_price" id="origin_price">
 					<span class="md-input-bar"></span>
 
 					<span class="uk-form-help-block">Quanto pagou por ele?</span>
-
 				</div>
-				<div class="uk-width-medium-5-10">
-					
+				<div class="uk-width-medium-5-10">	
 					<label>Preço de venda:</label>
                 	<input type="text" class="md-input" name="sale_price" id="sale_price">
 					<span class="md-input-bar"></span>
 
 					<span class="uk-form-help-block">Por quanto quer vender?</span>
-
 				</div>
+			</div>
+        </div>	
+
+        <div class="uk-form-row  md-input-filled">
+			<div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-medium-5-10 ">
+                	<label>Preço original:</label>
+                	<input type="text" class="md-input" name="origin_price" id="origin_price">
+					<span class="md-input-bar"></span>
+
+					<span class="uk-form-help-block">Quanto pagou por ele?</span>
+				</div>
+				<div class="uk-width-medium-5-10">
+					<label>Preço de venda:</label>
+                	<input type="text" class="md-input" name="sale_price" id="sale_price">
+					<span class="md-input-bar"></span>
+
+					<span class="uk-form-help-block">Por quanto quer vender?</span>
+				</div>
+			</div>
+        </div>	
+
+        <div class="uk-form-row  md-input-filled">
+			<div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-medium-1-1 ">
+                	<h3 class="heading_a">
+			            Fotos
+			        </h3>
+			        <div class="uk-grid">
+			            <div class="uk-width-1-1">
+			                <div id="file_upload-drop" class="uk-file-upload">
+			                    <a class="uk-form-file md-btn">escolher foto<input id="file_upload-select" type="file"></a>
+			                </div>
+			                <div id="file_upload-progressbar" class="uk-progress uk-hidden">
+			                    <div class="uk-progress-bar" style="width:0">0%</div>
+			                </div>
+			            </div>
+			        </div>
+				</div>
+			</div>
         </div>	
 
         <div class="uk-form-row">
@@ -171,4 +207,5 @@
     });
 </script>
 
+<script src="/theme/altair/assets/js/pages/forms_file_upload.min.js"></script>
 @endsection
