@@ -34,7 +34,10 @@ class ProductsController extends Controller {
 		$categories = Categories::all(['id', 'name']);
 		$brands 	= Brands::all(['id', 'name']);
 
-		return view('products.create', ['categories' => $categories, 'brands' => $brands]);
+		$product 	= new Products();
+		$product->save();
+
+		return view('products.create', ['categories' => $categories, 'brands' => $brands, 'product' => $product]);
 	}
 
 	public function store(ProductsRequest $request)
@@ -83,36 +86,55 @@ class ProductsController extends Controller {
 		return redirect()->route('products');
 	}
 
-	public function multiple_upload() {
+	public function internal_update(ProductsRequest $request)
+	{ 
+		$user 		= Auth::user();
+		$product 	= Products::find($request->get('id'));
+		
+		if(!empty($request->get('categorie_id')))
+			$product->categorie_id = $request->get('categorie_id');
 
-		// getting all of the post data
-		$files 			= Input::file('images');
-		// Making counting of uploaded images
-		$file_count 	= count($files);
-		// start count how many uploaded
-		$uploadcount 	= 0;
+		if(!empty($request->get('brand_id')))
+			$product->brand_id = $request->get('brand_id');
 
-		foreach($files as $file) {
+		if(!empty($request->get('title')))
+			$product->title = $request->get('title');
+
+		if(!empty($request->get('description')))
+			$product->description = $request->get('description');
+
+		if(!empty($request->get('gender')))
+			$product->gender = $request->get('gender');
+
+		if(!empty($request->get('state')))
+			$product->state = $request->get('state');
+
+		if(!empty($request->get('original_price')))
+			$product->original_price = str_replace(",", ".", str_replace(".", "", str_replace("R$ ", "", $request->get('original_price'))));
+
+		if(!empty($request->get('sale_price')))
+			$product->sale_price = str_replace(",", ".", str_replace(".", "", str_replace("R$ ", "", $request->get('sale_price'))));
+
+		if(!empty($request->get('situation')))
+			$product->situation = $request->get('situation');
+
+		$delivery_method = $request->get('delivery_method');
+		if(!empty($delivery_method)){
 			
-			$rules 		= array('file' => 'required'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
-			$validator 	= Validator::make(array('file'=> $file), $rules);
+			$product->delivery_method = "";
 
-			if($validator->passes()){
-				$destinationPath 	= 'uploads';
-				$filename 			= $file->getClientOriginalName();
-				$upload_success 	= $file->move($destinationPath, $filename);
-				$uploadcount ++;
+			foreach ($delivery_method as $method) {
+				$product->delivery_method .= $method;
 			}
-
 		}
 
-		if($uploadcount == $file_count){
-			Session::flash('success', 'Upload successfully'); 
-			return Redirect::to('upload');
-		} else {
-			return Redirect::to('upload')->withInput()->withErrors($validator);
-		}
+		$product->user_id 				= $user->id;
 
+		$product->save();
+
+		echo "Submitou!";
+
+		
 	}
 
 	public function destroy($id)
@@ -127,7 +149,7 @@ class ProductsController extends Controller {
 		return view('products.edit', compact('products'));
 	}
 
-	public function update(ProductsRequest $request, $id)
+	public function update2(ProductsRequest $request, $id)
 	{
 
 		$product 				= Products::find($id);

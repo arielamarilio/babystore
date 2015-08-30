@@ -30,8 +30,7 @@
         <link rel="stylesheet" href="/theme/altair/assets/css/main.min.css" media="all">
 
         <!-- Javascripts -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="/theme/front-end/js/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="/theme/front-end/js/jquery-1.9.1.min.js"></script>
         <script src="/theme/front-end/js/bootstrap.min.js"></script>
         <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
         <script src="/theme/front-end/js/jquery.fitvids.js"></script>
@@ -215,11 +214,8 @@
             });
         </script>
 
-        <!-- page specific plugins -->
-        <script src="/theme/altair/bower_components/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <!-- inputmask-->
-        <script src="/theme/altair/bower_components/jquery.inputmask/dist/jquery.inputmask.bundle.min.js"></script>
         <!--  forms advanced functions -->
+        <script src="/theme/altair/bower_components/ionrangeslider/js/ion.rangeSlider.min.js"></script>
         <script src="/theme/altair/assets/js/pages/forms_advanced.min.js"></script>
 
     </body>

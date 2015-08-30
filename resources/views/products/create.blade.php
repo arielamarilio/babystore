@@ -3,17 +3,20 @@
 @section('content')
 
 <script src="/js/jquery.maskMoney.js" type="text/javascript"></script>
+<script src="/js/jquery.form.js" type="text/javascript"></script>
 
 <div class="basic-login">
 
 	<h3 class="heading_a uk-margin-bottom">Cadastrar produtos</h3>
 
-	{!! Form::open(array('route' => ['products.store'], 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal', 'files'=>true)) !!}
+	{!! Form::open(array('route' => ['products.update'], 'id' => 'product_form', 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal', 'files'=>true)) !!}
+
+		<input type="hidden" name="id" value="{{ $product->id }}" > 
 
 		<div class="uk-form-row">
 			<div class="md-input-wrapper">
 				<label>Título	:</label>
-				<input type="text" class="md-input" name="title">
+				<input type="text" class="md-input" name="title" onblur="javascript:save();">
 				<span class="md-input-bar"></span>
 
 				<span class="uk-form-help-block">Dê um título amigável</span>
@@ -24,7 +27,7 @@
                 <div class="uk-width-medium-5-10">
 
                 	<label>Categoria:</label>
-                	<select id="categorie_id" name="categorie_id" data-md-selectize>
+                	<select id="categorie_id" name="categorie_id" data-md-selectize onchange="javascript:save();">
                         <option value="">Selectione ...</option>
                         @foreach($categories as $item)
 							<option value="{{$item->id}}">{{$item->name}}</option>
@@ -34,7 +37,7 @@
 				</div>
 				<div class="uk-width-medium-5-10">
 					<label>Marca:</label>
-                	<select id="brand_id" name="brand_id" data-md-selectize>
+                	<select id="brand_id" name="brand_id" data-md-selectize onchange="javascript:save();">
                         <option value="">Selectione ...</option>
                         @foreach($brands as $item)
 							<option value="{{$item->id}}">{{$item->name}}</option>
@@ -45,24 +48,25 @@
         <div class="uk-form-row">
 			<div class="uk-grid" data-uk-grid-margin>
 				<div class="uk-width-medium-5-10">
-					<label for="phone">Sexo</label>
+					<label for="radio">Sexo</label>
 
 					<br />
 
-					<input type="radio" name="gender" id="gender_1" data-md-icheck />
+					<input type="radio" name="gender" id="gender_1" value="male" onclick="javascript:save();" data-md-icheck />
                     <label for="gender_1" class="inline-label">Masculino</label>
 
-                    <input type="radio" name="gender" id="gender_2" data-md-icheck />
+                    <input type="radio" name="gender" id="gender_2" value="female" onclick="javascript:save();" data-md-icheck />
                     <label for="gender_2" class="inline-label">Feminino</label>
 
-					<input type="radio" name="gender" id="gender_3" data-md-icheck />
+					<input type="radio" name="gender" id="gender_3" value="both" onclick="javascript:save();" data-md-icheck />
                     <label for="gender_3" class="inline-label">Ambos</label>
                 </div>
 
                 <div class="uk-width-medium-5-10">
 
                 	<label>Estado:</label>
-                	<select id="state" name="state" data-md-selectize>
+                	<select id="state" name="state" data-md-selectize onchange="javascript:save();">
+                		<option value="">Selectione ...</option>
                         <option value="1">Novo</option>
                         <option value="2">Pouco usado</option>
                         <option value="3">Muito usado</option>
@@ -77,103 +81,75 @@
 			<div class="uk-grid" data-uk-grid-margin>
                 <div class="uk-width-medium-5-10 ">
                 	<label>Preço original:</label>
-                	<input type="text" class="md-input" name="origin_price" id="origin_price">
+                	<input type="text" class="md-input" name="original_price" id="original_price" onblur="javascript:save();">
 					<span class="md-input-bar"></span>
 
 					<span class="uk-form-help-block">Quanto pagou por ele?</span>
 				</div>
 				<div class="uk-width-medium-5-10">	
 					<label>Preço de venda:</label>
-                	<input type="text" class="md-input" name="sale_price" id="sale_price">
+                	<input type="text" class="md-input" name="sale_price" id="sale_price" onblur="javascript:save();">
 					<span class="md-input-bar"></span>
 
 					<span class="uk-form-help-block">Por quanto quer vender?</span>
-				</div>
-			</div>
-        </div>	
-
-        <div class="uk-form-row  md-input-filled">
-			<div class="uk-grid" data-uk-grid-margin>
-                <div class="uk-width-medium-5-10 ">
-                	<label>Preço original:</label>
-                	<input type="text" class="md-input" name="origin_price" id="origin_price">
-					<span class="md-input-bar"></span>
-
-					<span class="uk-form-help-block">Quanto pagou por ele?</span>
-				</div>
-				<div class="uk-width-medium-5-10">
-					<label>Preço de venda:</label>
-                	<input type="text" class="md-input" name="sale_price" id="sale_price">
-					<span class="md-input-bar"></span>
-
-					<span class="uk-form-help-block">Por quanto quer vender?</span>
-				</div>
-			</div>
-        </div>	
-
-        <div class="uk-form-row  md-input-filled">
-			<div class="uk-grid" data-uk-grid-margin>
-                <div class="uk-width-medium-1-1 ">
-                	<h3 class="heading_a">
-			            Fotos
-			        </h3>
-			        <div class="uk-grid">
-			            <div class="uk-width-1-1">
-			                <div id="file_upload-drop" class="uk-file-upload">
-			                    <a class="uk-form-file md-btn">escolher foto<input id="file_upload-select" type="file"></a>
-			                </div>
-			                <div id="file_upload-progressbar" class="uk-progress uk-hidden">
-			                    <div class="uk-progress-bar" style="width:0">0%</div>
-			                </div>
-			            </div>
-			        </div>
 				</div>
 			</div>
         </div>	
 
         <div class="uk-form-row">
-            <label>Detalhes</label>
-            <textarea cols="30" rows="1" class="md-input"></textarea>
+            <label>Formas de entrega:</label>
+            <p>
+                <input type="checkbox" name="delivery_method[]" id="delivery_method_1" data-md-icheck value="1" onchange="javascript:save();" />
+                <label for="delivery_method_1" class="inline-label">Correios</label>
+
+                <input type="checkbox" name="delivery_method[]" id="delivery_method_2" data-md-icheck value="2" onchange="javascript:save();" />
+                <label for="delivery_method_2" class="inline-label">Aceito retirar no meu local</label>
+
+                <input type="checkbox" name="delivery_method[]" id="delivery_method_3" data-md-icheck value="3" onchange="javascript:save();" />
+                <label for="delivery_method_3" class="inline-label">Entrega em domicílio</label>
+
+                <input type="checkbox" name="delivery_method[]" id="delivery_method_4" data-md-icheck value="4" onchange="javascript:save();" />
+                <label for="delivery_method_4" class="inline-label">Outro</label>
+            </p>
+            <span class="uk-form-help-block">Você pode selecionar mais de um local de entrega</span>
+        </div>
+
+        <div class="uk-form-row">
+            <label>Imagens:</label>
+            <div class="uk-width-1-1">
+	            <div class="uk-form-file md-btn md-btn-primary">
+	                &nbsp;Selecione suas imagens&nbsp;
+	                <input id="imagens" name="image[]" type="file" multiple="true">
+	            </div>
+	            Selecione uma ou mais imagens para o seu produto.
+	        </div>
+        </div>
+
+        <div id="mensagem_imagem"></div>
+
+        <div class="uk-form-row">
+            <label>Detalhes:</label>
+            <textarea cols="30" rows="1" name="description" class="md-input" onblur="javascript:save();"></textarea>
             <span class="uk-form-help-block">Conte-nos um pouco sobre o seu produto</span>
         </div>
 
+        <div class="uk-form-row right">
+			<a href="#" class="btn btn-info btn-lg">
+				<span class="glyphicon glyphicon-ok"></span> Salvar
+			</a>
+
+			<a href="#" class="btn btn-success btn-lg">
+				<span class="glyphicon glyphicon-bullhorn"></span> Salvar e publicar no site
+			</a>
+
+			<a href="#" class="btn btn-warning btn-lg">
+				<span class="glyphicon glyphicon-remove"></span> Cancelar 
+			</a>
+
+		</div>
+
+
 		<!--
-		
-		<div class="col-md-3">
-			<div class="form-group">
-				{!! Form::label('price', 'Valor:') !!}
-				{!! Form::text('price', null, ['class'=>'form-control']) !!}
-			</div>
-
-			<div class="form-group">
-				{!! Form::label('monetary_discount', 'Desconto monetário:') !!}
-				{!! Form::text('monetary_discount', null, ['class'=>'form-control']) !!}
-			</div>
-
-			<div class="form-group">
-				{!! Form::label('percentage_discount', 'Desconto percentual:') !!}
-				{!! Form::text('percentage_discount', null, ['class'=>'form-control']) !!}
-			</div>
-
-			<div class="form-group">
-				{!! Form::Label('situation', 'Situação:') !!}
-				<select class="form-control" name="situation">
-					<option value="1">Normal</option>
-					<option value="2">Reservado</option>
-					<option value="3">Vendido</option>
-					<option value="4">Cancelado</option>
-				</select>
-			</div>
-		</div>
-
-		<div class="col-md-2">
-			&nbsp;
-		</div>
-		
-		<div class="col-md-12">
-			{!! Form::file('image[]', array('multiple'=>true)) !!}
-			<br />
-		</div>
 
 		<div class="col-md-2">
 			<div class="form-group">
@@ -188,7 +164,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function($){
-	    $("#origin_price").maskMoney({
+	    $("#original_price").maskMoney({
 	    	prefix:'R$ ',
 			symbol: 'R$ ', 
 			showSymbol: true, 
@@ -205,7 +181,16 @@
 			symbolStay: true
 		});
     });
+    function save(){
+    	$.ajax({
+		    url: $('#product_form').attr('action'),
+		    type: 'POST',
+		    data: $('#product_form').serialize(),
+		    success: function(result) { }
+		});
+    }
 </script>
 
 <script src="/theme/altair/assets/js/pages/forms_file_upload.min.js"></script>
+
 @endsection
