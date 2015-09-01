@@ -88,6 +88,8 @@ class ProductsController extends Controller {
 
 	public function internal_update(ProductsRequest $request)
 	{ 
+		ini_set("display_errors", true);
+
 		$user 		= Auth::user();
 		$product 	= Products::find($request->get('id'));
 		
@@ -131,10 +133,63 @@ class ProductsController extends Controller {
 		$product->user_id 				= $user->id;
 
 		$product->save();
-
-		echo "Submitou!";
-
 		
+	}
+
+	public function upload_get()
+	{
+		return view('products.upload_get');
+	}
+
+	public function upload_post() {
+
+		ini_set("display_errors", true);
+
+		// $input = Input::all();
+		// $rules = array(
+		//     'file' => 'image|max:3000',
+		// );
+
+		// $validation = Validator::make($input, $rules);
+
+		// if ($validation->fails())
+		// {
+		// 	return Response::make($validation->errors->first(), 400);
+		// }
+
+		// $file = Input::file('file');
+
+  //       $extension 	= File::extension($file['name']);
+  //       $directory 	= public_path() . '/images/products/';
+  //       $filename 	= sha1(time().time()).".{$extension}";
+
+  //       $upload_success = Input::upload('file', $directory, $filename);
+
+  //       if( $upload_success ) {
+  //       	return Response::json('success', 200);
+  //       } else {
+  //       	return Response::json('error', 400);
+  //       }
+
+
+
+
+
+
+
+
+		$path = public_path() . '/images/products/';
+
+		if( !is_dir( $path ) )
+			mkdir( $path );
+
+		$destination_path 	= $path;
+		$extension 			= Input::file('file')->getClientOriginalExtension();
+		$file_name 			= 'upload.' . $extension;
+		$upload_success 	= Input::file('file')->move($destination_path, $file_name);
+
+		if($upload_success)
+			echo "OK!";
 	}
 
 	public function destroy($id)
@@ -148,6 +203,7 @@ class ProductsController extends Controller {
 		$products = Products::find($id);
 		return view('products.edit', compact('products'));
 	}
+
 
 	public function update2(ProductsRequest $request, $id)
 	{

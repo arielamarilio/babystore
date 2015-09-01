@@ -2,8 +2,10 @@
 
 @section('content')
 
+<link rel="stylesheet" href="/plugins/dropzone/dropzone.css">
+
 <script src="/js/jquery.maskMoney.js" type="text/javascript"></script>
-<script src="/js/jquery.form.js" type="text/javascript"></script>
+<script src="/plugins/dropzone/dropzone.js"></script>
 
 <div class="basic-login">
 
@@ -12,6 +14,7 @@
 	{!! Form::open(array('route' => ['products.update'], 'id' => 'product_form', 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal', 'files'=>true)) !!}
 
 		<input type="hidden" name="id" value="{{ $product->id }}" > 
+		<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 
 		<div class="uk-form-row">
 			<div class="md-input-wrapper">
@@ -115,25 +118,21 @@
         </div>
 
         <div class="uk-form-row">
-            <label>Imagens:</label>
-            <div class="uk-width-1-1">
-	            <div class="uk-form-file md-btn md-btn-primary">
-	                &nbsp;Selecione suas imagens&nbsp;
-	                <input id="imagens" name="image[]" type="file" multiple="true">
-	            </div>
-	            Selecione uma ou mais imagens para o seu produto.
-	        </div>
-        </div>
-
-        <div id="mensagem_imagem"></div>
-
-        <div class="uk-form-row">
             <label>Detalhes:</label>
             <textarea cols="30" rows="1" name="description" class="md-input" onblur="javascript:save();"></textarea>
             <span class="uk-form-help-block">Conte-nos um pouco sobre o seu produto</span>
         </div>
 
-        <div class="uk-form-row right">
+        <hr />
+
+
+        <!-- <div class="dropzone dropzone-previews" id="my-awesome-dropzone"></div> -->
+
+        <div class="dropzone" id="images"></div>
+
+        <hr />
+
+        <div class="uk-form-row ">
 			<a href="#" class="btn btn-info btn-lg">
 				<span class="glyphicon glyphicon-ok"></span> Salvar
 			</a>
@@ -164,6 +163,26 @@
 
 <script type="text/javascript">
 	$(document).ready(function($){
+
+		var _Url 	= "{{ route('products.upload') }}";
+        var token 	= "{{ Session::getToken() }}";
+        Dropzone.autoDiscover = false;
+
+        var myDropzone = new Dropzone("div#images", {
+            url: _Url,
+            params: {
+                _token: token
+            }
+        });
+        Dropzone.options.myAwesomeDropzone = {
+            paramName: "images", // The name that will be used to transfer the file
+            maxFilesize: 5, // MB
+            addRemoveLinks: true,
+            accept: function(file, done) {
+ 
+            },
+        };
+
 	    $("#original_price").maskMoney({
 	    	prefix:'R$ ',
 			symbol: 'R$ ', 
@@ -190,7 +209,6 @@
 		});
     }
 </script>
-
-<script src="/theme/altair/assets/js/pages/forms_file_upload.min.js"></script>
+<!-- <script src="/theme/altair/assets/js/pages/forms_file_upload.min.js"></script> -->
 
 @endsection

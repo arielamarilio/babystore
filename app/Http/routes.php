@@ -42,6 +42,9 @@ Route::group(['prefix'=>'produtos', 'where'=>['id'=>'[0-9]+']], function() {
 	Route::get('{id}/remover',['as'=>'products.destroy', 'uses'=>'ProductsController@destroy']);
 	Route::get('{id}/editar',['as'=>'products.edit', 'uses'=>'ProductsController@edit']);
 	Route::post('update',['as'=>'products.update', 'uses'=>'ProductsController@internal_update']);
+
+	Route::get('upload',['as'=>'products.upload', 'uses'=>'ProductsController@upload_get']);
+	Route::post('upload',['as'=>'products.upload', 'uses'=>'ProductsController@upload_post']);
 });
 
 Route::group(['prefix'=>'meus_dados', 'where'=>['id'=>'[0-9]+']], function() {
