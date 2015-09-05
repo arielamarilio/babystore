@@ -17,6 +17,9 @@ body {
 .section-white {
   background: #FFF;
 }
+.section-menu {
+  background: #FFF;
+}
 .section .container:first-child h1,
 .section .container:first-child h2,
 .section .container:first-child h3 {

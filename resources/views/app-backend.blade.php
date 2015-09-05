@@ -33,6 +33,7 @@
         <link rel="stylesheet" href="/theme/front-end/css/social.css" />
 
         <link rel="stylesheet" href="/theme/front-end/css/findcon-navbar.css" />
+        <link rel="stylesheet" href="/theme/front-end/css/btn-circle.css" />
 
         <!-- Javascripts -->
         <script src="/theme/front-end/js/jquery-1.9.1.min.js"></script>
@@ -67,6 +68,19 @@
                             <li><a href="{{ url('/auth/login') }}">Login</a></li>
                             <li><a href="{{ url('/auth/register') }}">Faça seu cadastro</a></li>
                         @else
+                            
+                            <li>
+                                <a href="{{ route('products') }}">
+                                    <i class="glyphicon glyphicon-tag"></i> 
+                                    Meus produtos
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-comment"></i> 
+                                    Mensagens
+                                </a>
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <i class="glyphicon glyphicon-user"></i> 
@@ -86,10 +100,9 @@
                                             Sair
                                         </a>
                                     </li>
-
-                                    <li><a href=""></a></li>
                                 </ul>
                             </li>
+                            
                         @endif
                     </ul>
                 </div>
@@ -105,24 +118,14 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <!-- Sidebar -->
-                    <div class="col-sm-3 blog-sidebar">
-                        <h4>Canais</h4>
-                        <ul class="blog-categories">
-                            
-                            <li><a href="{{ route('products') }}">Meus produtos</a></li>
-                            <li><a href="{{ url('/auth/logout') }}">Sair</a></li>
-                        </ul>
-                    </div>
-                    <!-- End Sidebar -->
-                    <div class="col-sm-9">
+                    <div class="col-sm-12">
                         @yield('content')
                     </div>
-                    <!-- End Blog Post -->
                 </div>
+
             </div>
         </div>
-        
+
         <div class="container">
             <div class="row">
                 <div class="col-md-12" style="height: 50px"></div>
