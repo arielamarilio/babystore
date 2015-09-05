@@ -34,6 +34,7 @@
 
         <link rel="stylesheet" href="/theme/front-end/css/findcon-navbar.css" />
         <link rel="stylesheet" href="/theme/front-end/css/btn-circle.css" />
+        <link rel="stylesheet" href="/theme/front-end/css/user-bar.css" />
 
         <!-- Javascripts -->
         <script src="/theme/front-end/js/jquery-1.9.1.min.js"></script>
@@ -69,18 +70,6 @@
                             <li><a href="{{ url('/auth/register') }}">Faça seu cadastro</a></li>
                         @else
                             
-                            <li>
-                                <a href="{{ route('products') }}">
-                                    <i class="glyphicon glyphicon-tag"></i> 
-                                    Meus produtos
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="glyphicon glyphicon-comment"></i> 
-                                    Mensagens
-                                </a>
-                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <i class="glyphicon glyphicon-user"></i> 
@@ -111,9 +100,63 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-12" style="height: 50px"></div>
+                <div class="col-md-12" style="height: 28px"></div>
             </div>
         </div> 
+
+        <div class="section">
+            <div class="container">
+                <div class="row basic-panel profile-panel">
+                    <div class="col-sm-2" style="text-align: right;">
+                        <img data-src="holder.js/140x140" class="img-thumbnail" alt="140x140" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNGY5ZWIxNWIyYSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE0ZjllYjE1YjJhIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA3ODEyNSIgeT0iNzQuNjczNDM3NSI+MTQweDE0MDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="width: 140px; height: 140px;">
+                    </div>
+
+                    <div class="col-sm-4">
+                        <address>
+                            <br>
+                            <h3>{{ Auth::user()->name }} </h3>
+                            Link: <a href="http://www.site.com">www.site.com</a> <br>
+                        </address>
+                    </div>
+
+                    <div class="col-sm-6" style="text-align: right;">
+
+                        <a href="#" class="btn btn-sq btn-info"><i class="fa fa-tags fa-5x"></i><br/>Produtos</a>
+                        <a href="{{ route('products') }}" class="btn btn-sq btn-info"><i class="fa fa-dollar fa-5x"></i><br/>Vendas</a>
+                        <a href="{{ route('products') }}" class="btn btn-sq btn-info"><i class="fa fa-shopping-cart fa-5x"></i><br/>Compras</a>
+                        <a href="#" class="btn btn-sq btn-info"><i class="fa fa-comments fa-5x"></i><br/>Mensagens</a>
+
+                        <p>
+
+                        <!--
+                        <a href="#" class="btn btn-sq btn-primary">
+                        <i class="fa fa-user fa-5x"></i><br/>
+                        Demo Primary <br>Button
+                        </a>
+                        <a href="#" class="btn btn-sq btn-success">
+                        <i class="fa fa-user fa-5x"></i><br/>
+                        Demo Success <br>Button
+                        </a>
+                        <a href="#" class="btn btn-sq btn-info">
+                        <i class="fa fa-user fa-5x"></i><br/>
+                        Demo Info <br>Button
+                        </a>
+                        <a href="#" class="btn btn-sq btn-warning">
+                        <i class="fa fa-user fa-5x"></i><br/>
+                        Demo Warning <br>Button
+                        </a>
+                        <a href="#" class="btn btn-sq btn-danger">
+                        <i class="fa fa-user fa-5x"></i><br/>
+                        Demo Danger <br>Button
+                        </a>
+                        -->
+                        </p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="section">
             <div class="container">
@@ -122,7 +165,6 @@
                         @yield('content')
                     </div>
                 </div>
-
             </div>
         </div>
 
