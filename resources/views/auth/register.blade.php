@@ -9,17 +9,6 @@
 <!-- altair admin -->
 <link rel="stylesheet" href="/theme/altair/assets/css/main.min.css" media="all">
 
-<!-- Page Title -->
-<div class="section section-breadcrumbs">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="section">
     <div class="container">
         <div class="row">

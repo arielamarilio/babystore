@@ -185,7 +185,7 @@ class ProductsController extends Controller {
 
 		$destination_path 	= $path;
 		$extension 			= Input::file('file')->getClientOriginalExtension();
-		$file_name 			= 'upload.' . $extension;
+		$file_name 			= 'upload_' . date('YmdHis') .'.' . $extension;
 		$upload_success 	= Input::file('file')->move($destination_path, $file_name);
 
 		if($upload_success)

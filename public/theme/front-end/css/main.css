@@ -4,6 +4,8 @@
 body {
   background: url(../img/page-background.png);
 }
+/* Custom Navbar */
+
 .section {
   padding: 10px 0;
   -webkit-transform: translateZ(0);
@@ -1685,13 +1687,27 @@ span.color-red {
   top: 0;
   left: 0;
 }
+
+/*--------------------------------------------------------------------------
++ Breadcrumbs Section Style
+--------------------------------------------------------------------------*/
+.section-top {
+  background: url(../img/top-background.png);
+}
+.section-top h1 {
+  color: #FAFAFA;
+  font-size: 1.6em;
+  margin-bottom: 0;
+  text-transform: none;
+}
+
 /*--------------------------------------------------------------------------
 +	Breadcrumbs Section Style
 --------------------------------------------------------------------------*/
 .section-breadcrumbs {
   background: #222;
   background: rgba(34, 34, 34, 0.8);
-  margin-bottom: 10px;
+  margin-bottom: 0px !important;
 }
 .section-breadcrumbs h1 {
   color: #FAFAFA;
@@ -1703,7 +1719,7 @@ span.color-red {
 	Footer Style
 --------------------------------------------------------------------------*/
 .footer {
-  background: #222;
+  background: #7BAFDF;
   color: #A0A0A0;
   padding: 0 20px 10px 20px;
   border-top: 4px solid #4f8db3;
