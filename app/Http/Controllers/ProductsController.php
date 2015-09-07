@@ -31,61 +31,20 @@ class ProductsController extends Controller {
 
 	public function create(Request $request)
 	{
-
 		$product 	= new Products();
 		$product->save();
 
 		return redirect()->route('products.edit', [$product->id]);
 	}
-
-	public function store(ProductsRequest $request)
+	public function edit($id)
 	{
+		$categories = Categories::all(['id', 'name']);
+		$brands 	= Brands::all(['id', 'name']);
+		$product 	= Products::find($id);
 
-		$user = Auth::user();
-
-		$product 						= new Products();
-		$product->categorie_id 			= $request->get('categorie_id');
-		$product->brand_id 				= $request->get('brand_id');
-		$product->title 				= $request->get('title');
-		$product->description 			= $request->get('description');	
-		$product->gender 				= $request->get('gender');
-		$product->state 				= $request->get('state');
-		$product->price 				= $request->get('state');
-		$product->monetary_discount 	= (!empty($request->get('monetary_discount'))) ? $request->get('monetary_discount') : 0; 
-		$product->percentage_discount 	= (!empty($request->get('percentage_discount'))) ? $request->get('percentage_discount') : 0;
-		$product->situation 			= $request->get('situation');
-		$product->price 				= $request->get('state');
-		$product->user_id 				= $user->id;
-		$product->save();
-
-		$images 		= Input::file('image');
-		$images_count 	= count($images);
-		$upload_count 	= 0;
-
-		foreach($images as $image) {
-			
-			$rules 		= array('file' => 'required'); // 'required|mimes:png,gif,jpeg,txt,pdf,doc'
-			$validator 	= Validator::make(array('file'=> $image), $rules);
-
-			if($validator->passes()){
-
-				$path = public_path() . '/images/products/' . $product->id . '/';
-
-				if( !is_dir( $path ) )
-					mkdir( $path );
-
-				$extension 			= $image->getClientOriginalExtension();
-				$file_name 			= 'product_' . $product->id . '_' . $upload_count . '.' . $extension;
-				$upload_success 	= $image->move($path, $file_name);
-				$upload_count ++;
-			}
-
-		}
-
-		return redirect()->route('products');
-	
+		return view('products.edit', ['categories' => $categories, 'brands' => $brands, 'product' => $product]);
 	}
-
+	
 	public function internal_update(ProductsRequest $request)
 	{ 
 		ini_set("display_errors", true);
@@ -146,57 +105,36 @@ class ProductsController extends Controller {
 
 	}
 
-	public function upload_post() {
+	public function upload_post(ProductsRequest $request) {
 
 		ini_set("display_errors", true);
 
-		// $input = Input::all();
-		// $rules = array(
-		//     'file' => 'image|max:3000',
-		// );
-
-		// $validation = Validator::make($input, $rules);
-
-		// if ($validation->fails())
-		// {
-		// 	return Response::make($validation->errors->first(), 400);
-		// }
-
-		// $file = Input::file('file');
-
-		// $extension 	= File::extension($file['name']);
-		// $directory 	= public_path() . '/images/products/';
-		// $filename 	= sha1(time().time()).".{$extension}";
-
-		// $upload_success = Input::upload('file', $directory, $filename);
-
-		// if( $upload_success ) {
-		// 	return Response::json('success', 200);
-		// } else {
-		// 	return Response::json('error', 400);
-		// }
-
-
-		$path = public_path() . '/images/products/';
+		$idProduct 	= $request->get('idProduct');
+		$path 		= public_path() . '/images/products/' . $idProduct . '/';
 
 		if( !is_dir( $path ) )
 			mkdir( $path );
 
 		$destination_path 	= $path;
 		$extension 			= Input::file('file')->getClientOriginalExtension();
-		$file_name 			= 'upload_' . date('YmdHis') .'.' . $extension;
+		$file_name 			= $idProduct . '_product_' . date('YmdHis') .'.' . $extension;
 		$upload_success 	= Input::file('file')->move($destination_path, $file_name);
 
 		if($upload_success)
-			echo "OK!";
+			echo json_encode( array('success'=>true, 'new_filename' => $file_name) );
 	
 	}
 
-	public function remove_upload() {
+	public function remove_upload(ProductsRequest $request) {
 
-		echo "Entrou aqui";
-		die();
-		
+		$idProduct 		= $request->get('idProduct');
+		$serverFileName = $request->get('serverFileName');
+		$path 			= public_path() . '/images/products/' . $idProduct . '/';
+
+		unlink($path . $serverFileName);
+
+		echo json_encode( array('success'=>true) );
+
 	}
 
 	public function destroy($id)
@@ -205,18 +143,6 @@ class ProductsController extends Controller {
 		return redirect()->route('products');
 	
 	}
-
-	public function edit($id)
-	{
-
-		$categories = Categories::all(['id', 'name']);
-		$brands 	= Brands::all(['id', 'name']);
-		$product 	= Products::find($id);
-
-		return view('products.edit', ['categories' => $categories, 'brands' => $brands, 'product' => $product]);
-
-	}
-
 
 	public function update2(ProductsRequest $request, $id)
 	{

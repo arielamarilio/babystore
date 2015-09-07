@@ -25,6 +25,7 @@
 				<span class="uk-form-help-block">Dê um título amigável</span>
 			</div>
 		</div>
+
 		<div class="uk-form-row">
 			<div class="uk-grid" data-uk-grid-margin>
                 <div class="uk-width-medium-5-10">
@@ -48,6 +49,7 @@
                     </select>
 				</div>
         </div>	
+
         <div class="uk-form-row">
 			<div class="uk-grid" data-uk-grid-margin>
 				<div class="uk-width-medium-5-10">
@@ -109,7 +111,7 @@
 
         <div class="uk-form-row">
             <label>Formas de entrega:</label>
-
+            	<br />
                 <input type="checkbox" name="delivery_method[]" id="delivery_method_1" data-md-icheck value="1" <?php if(strpos($product->delivery_method, '1') !== false) { echo "checked"; } ?> onchange="javascript:save();" />
                 <label for="delivery_method_1" class="inline-label">Correios</label>
 
@@ -132,9 +134,6 @@
         </div>
 
         <hr />
-
-
-        <!-- <div class="dropzone dropzone-previews" id="my-awesome-dropzone"></div> -->
 
         <div class="dropzone" id="images"></div>
 
@@ -161,13 +160,16 @@
 <script type="text/javascript">
 	$(document).ready(function($){
 
-		var _Url 	= "{{ route('products.upload') }}";
-        var token 	= "{{ Session::getToken() }}";
-        Dropzone.autoDiscover = false;
+		var _UrlAdd				= "{{ route('products.upload') }}";
+		var _UrlRemove			= "{{ route('products.remove_upload') }}";
+        var token 				= "{{ Session::getToken() }}";
+        var idProduct 			= "{{ $product->id }}";
+        Dropzone.autoDiscover 	= false;
 
         var myDropzone = new Dropzone("div#images", {
-            url: _Url,
+            url: _UrlAdd,
             maxFilesize: '2',
+            acceptedFiles: '.jpeg,.jpg,.png,.gif',
 		    dictDefaultMessage: 'Adicione aqui fotos dos seus produtos.',
 		    dictFileTooBig:  'O arquivo é muito grande, o tamanho máximo permitido é de 2Mb.',
 		    dictCancelUpload:  'Cancelar o envio',
@@ -175,46 +177,41 @@
 		    dictRemoveFile:  'Remover arquivo',
 		    addRemoveLinks: true,
 			removedfile: function(file) {
-			    var name = file.name;        
-			    $.ajax({
-			        type: 'POST',
-			        url: 'delete.php',
-			        data: "id="+name,
-			        dataType: 'html'
-			    });
+				if(typeof file.serverFileName != 'undefined') {
+					$.ajax({
+				        type: 'POST',
+				        url: _UrlRemove,
+				        data: { serverFileName: file.serverFileName, _token: token, idProduct: idProduct },
+				        dataType: 'html'
+				    });
+				}
 				var _ref;
-				return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;        
-			}
+				return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+			},
+			init: function() {
+				this.on("success", function(file, server_return) {
+					var serverReturn 	= JSON.parse(server_return);
+					file.serverFileName = serverReturn.new_filename;
+                });
+			},
             params: {
+            	idProduct: idProduct,
                 _token: token
             }
         });
         Dropzone.options.myAwesomeDropzone = {
-            paramName: "images", // The name that will be used to transfer the file
-            maxFilesize: 5, // MB
+            paramName: "images",
+            maxFilesize: 5,
             addRemoveLinks: true,
             accept: function(file, done) {
  
-            },
+            }
         };
 
-	    $("#original_price").maskMoney({
-	    	prefix:'R$ ',
-			symbol: 'R$ ', 
-			showSymbol: true, 
-			thousands: '.', 
-			decimal: ',', 
-			symbolStay: true
-		});
-		$("#sale_price").maskMoney({
-	    	prefix:'R$ ',
-			symbol: 'R$ ', 
-			showSymbol: true, 
-			thousands: '.', 
-			decimal: ',', 
-			symbolStay: true
-		});
+	    $("#original_price").maskMoney({ prefix:'R$ ', symbol: 'R$ ', showSymbol: true, thousands: '.', decimal: ',', symbolStay: true });
+		$("#sale_price").maskMoney({ prefix:'R$ ', symbol: 'R$ ', showSymbol: true, thousands: '.', decimal: ',', symbolStay: true });
     });
+
     function save(){
     	$.ajax({
 		    url: $('#product_form').attr('action'),
