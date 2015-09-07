@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Brands;
 use App\Categories;
 use App\Products;
+use App\ProductsImages;
 
 use Auth;
 
@@ -44,7 +45,7 @@ class ProductsController extends Controller {
 
 		return view('products.edit', ['categories' => $categories, 'brands' => $brands, 'product' => $product]);
 	}
-	
+
 	public function internal_update(ProductsRequest $request)
 	{ 
 		ini_set("display_errors", true);
@@ -92,25 +93,38 @@ class ProductsController extends Controller {
 			}
 		}
 
-		$product->user_id 				= $user->id;
+		$product->user_id = $user->id;
 
 		$product->save();
 		
 	}
 
-	public function upload_get()
-	{
+	public function get_images($idProduct){
+		$product 		= Products::find($idProduct);
+		$product_images = $product->images;
+		$data_return 	= array();
+		$cont 			= 0;
 
-		return view('products.upload_get');
+		foreach ($product_images as $image) {
+			$data_return[$cont]['id'] 	= $image->id;
+			$data_return[$cont]['name'] = $image->name;
+			$data_return[$cont]['dir'] 	= '/images/products/' . $idProduct . '/';
+			$data_return[$cont]['size'] = $image->size;
 
+			$cont++;
+		}
+
+		echo json_encode($data_return);
 	}
 
 	public function upload_post(ProductsRequest $request) {
 
 		ini_set("display_errors", true);
 
-		$idProduct 	= $request->get('idProduct');
-		$path 		= public_path() . '/images/products/' . $idProduct . '/';
+		$idProduct 		= $request->get('idProduct');
+		$path 			= public_path() . '/images/products/' . $idProduct . '/';
+
+		$product 		= Products::find($idProduct);
 
 		if( !is_dir( $path ) )
 			mkdir( $path );
@@ -120,8 +134,19 @@ class ProductsController extends Controller {
 		$file_name 			= $idProduct . '_product_' . date('YmdHis') .'.' . $extension;
 		$upload_success 	= Input::file('file')->move($destination_path, $file_name);
 
+
+		$productImg 				= new ProductsImages();	
+		$productImg->products_id 	= $idProduct;
+		$productImg->image 			= $destination_path . $file_name;
+		$productImg->name 			= $file_name;
+		$productImg->dir 			= $destination_path;
+		$productImg->size 			= Input::file('file')->getClientSize();
+		$productImg->description	= '';
+		$productImg->state 			= 1;
+		$productImg->save();
+
 		if($upload_success)
-			echo json_encode( array('success'=>true, 'new_filename' => $file_name) );
+			echo json_encode( array('success'=>true, 'serverFileName' => $file_name, 'idProductImg' => $productImg->id) );
 	
 	}
 
@@ -129,9 +154,12 @@ class ProductsController extends Controller {
 
 		$idProduct 		= $request->get('idProduct');
 		$serverFileName = $request->get('serverFileName');
+		$idProductImg 	= $request->get('idProductImg');
 		$path 			= public_path() . '/images/products/' . $idProduct . '/';
 
 		unlink($path . $serverFileName);
+
+		ProductsImages::find($idProductImg)->delete();
 
 		echo json_encode( array('success'=>true) );
 

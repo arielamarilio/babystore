@@ -41,11 +41,10 @@ Route::group(['prefix'=>'produtos', 'where'=>['id'=>'[0-9]+']], function() {
 	Route::get('novo',['as'=>'products.create', 'uses'=>'ProductsController@create']);
 	Route::get('{id}/remover',['as'=>'products.destroy', 'uses'=>'ProductsController@destroy']);
 	Route::get('{id}/editar',['as'=>'products.edit', 'uses'=>'ProductsController@edit']);
-	Route::post('update',['as'=>'products.update', 'uses'=>'ProductsController@internal_update']);
 
-	Route::get('upload',['as'=>'products.upload', 'uses'=>'ProductsController@upload_get']);
+	Route::get('{id}/buscar_imagens',['as'=>'products.get_images', 'uses'=>'ProductsController@get_images']);
+	Route::post('update',['as'=>'products.update', 'uses'=>'ProductsController@internal_update']);
 	Route::post('upload',['as'=>'products.upload', 'uses'=>'ProductsController@upload_post']);
-	
 	Route::post('remove_upload',['as'=>'products.remove_upload', 'uses'=>'ProductsController@remove_upload']);
 });
 

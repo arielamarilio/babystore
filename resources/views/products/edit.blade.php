@@ -162,6 +162,7 @@
 
 		var _UrlAdd				= "{{ route('products.upload') }}";
 		var _UrlRemove			= "{{ route('products.remove_upload') }}";
+		var _UrlGetExistingImg	= "{{ route('products.get_images',['id'=>$product->id]) }}";
         var token 				= "{{ Session::getToken() }}";
         var idProduct 			= "{{ $product->id }}";
         Dropzone.autoDiscover 	= false;
@@ -181,7 +182,7 @@
 					$.ajax({
 				        type: 'POST',
 				        url: _UrlRemove,
-				        data: { serverFileName: file.serverFileName, _token: token, idProduct: idProduct },
+				        data: { serverFileName: file.serverFileName, idProductImg: file.idProductImg, _token: token, idProduct: idProduct },
 				        dataType: 'html'
 				    });
 				}
@@ -189,10 +190,21 @@
 				return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
 			},
 			init: function() {
+				thisDropzone = this;
+
 				this.on("success", function(file, server_return) {
 					var serverReturn 	= JSON.parse(server_return);
-					file.serverFileName = serverReturn.new_filename;
+					file.serverFileName = serverReturn.serverFileName;
+					file.idProductImg 	= serverReturn.idProductImg;
                 });
+
+				$.getJSON(_UrlGetExistingImg, function(data) {
+					$.each(data, function(index, val) {
+						var mockFile = { name: val.name, size: val.size, serverFileName: val.name, idProductImg: val.id };
+						thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+						thisDropzone.options.thumbnail.call(thisDropzone, mockFile, val.dir + val.name);
+					});
+				});
 			},
             params: {
             	idProduct: idProduct,
