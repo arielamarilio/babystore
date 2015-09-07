@@ -133,9 +133,11 @@
             <span class="uk-form-help-block">Conte-nos um pouco sobre o seu produto</span>
         </div>
 
-        <hr />
-
-        <div class="dropzone" id="images"></div>
+        <div class="uk-form-row">
+            <label>Imagens:</label>
+            <div class="dropzone" id="images"></div>
+            <span class="uk-form-help-block">Para adicionar fotos basta clicar no quadro acima ou arrastar e soltar uma imagem nele.</span>
+        </div>
 
         <hr />
 
@@ -157,6 +159,8 @@
 
 </div>
 
+
+
 <script type="text/javascript">
 	$(document).ready(function($){
 
@@ -166,17 +170,22 @@
         var token 				= "{{ Session::getToken() }}";
         var idProduct 			= "{{ $product->id }}";
         Dropzone.autoDiscover 	= false;
+        var previewTemplate	= '<div class="dz-preview dz-image-preview">';
+        previewTemplate = previewTemplate + '<div class="dz-image"><img data-dz-thumbnail /></div> ';
+        previewTemplate = previewTemplate + '<div class="dz-error-message"></div>';
+		previewTemplate = previewTemplate + '</div>';
 
         var myDropzone = new Dropzone("div#images", {
             url: _UrlAdd,
-            maxFilesize: '2',
+            maxFilesize: '5',
             acceptedFiles: '.jpeg,.jpg,.png,.gif',
-		    dictDefaultMessage: 'Adicione aqui fotos dos seus produtos.',
-		    dictFileTooBig:  'O arquivo é muito grande, o tamanho máximo permitido é de 2Mb.',
+		    dictDefaultMessage: '',
+		    dictFileTooBig:  'O arquivo é muito grande, o tamanho máximo permitido é de 5Mb.',
 		    dictCancelUpload:  'Cancelar o envio',
 		    dictCancelUploadConfirmation:  'Tem certeza de que deseja cancelar este carregamento?',
 		    dictRemoveFile:  'Remover arquivo',
 		    addRemoveLinks: true,
+		    previewTemplate: previewTemplate,
 			removedfile: function(file) {
 				if(typeof file.serverFileName != 'undefined') {
 					$.ajax({
