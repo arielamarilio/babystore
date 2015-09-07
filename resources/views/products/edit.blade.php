@@ -134,20 +134,14 @@
         </div>
 
         <div class="uk-form-row">
-            <label>Imagens:</label>
             <div class="dropzone" id="images"></div>
-            <span class="uk-form-help-block">Para adicionar fotos basta clicar no quadro acima ou arrastar e soltar uma imagem nele.</span>
         </div>
 
         <hr />
 
         <div class="uk-form-row ">
-			<a href="#salvar" id="salvar" onclick="javascript:save();" class="btn btn-info btn-lg">
+			<a href="#salvar" id="salvar" onclick="javascript:save();" class="btn btn-success btn-lg">
 				<span class="glyphicon glyphicon-ok"></span> Salvar
-			</a>
-
-			<a href="#" class="btn btn-success btn-lg">
-				<span class="glyphicon glyphicon-bullhorn"></span> Salvar e publicar no site
 			</a>
 
 			<a href="#" class="btn btn-danger btn-lg">
@@ -180,7 +174,7 @@
             url: _UrlAdd,
             maxFilesize: '2',
             acceptedFiles: '.jpeg,.jpg,.png,.gif',
-		    dictDefaultMessage: '',
+		    dictDefaultMessage: '<a class="btn btn-sq btn-info"><i class="fa fa-picture-o fa-5x"></i><br/>Fotos</a>',
 		    dictFileTooBig:  'O arquivo é muito grande, o tamanho máximo permitido é de 2Mb.',
 		    dictCancelUpload:  'Cancelar o envio',
 		    dictCancelUploadConfirmation:  'Tem certeza de que deseja cancelar este carregamento?',
@@ -217,15 +211,9 @@
 					$.each(data, function(index, val) {
 
 						var mockFile = { name: val.name, size: val.size, serverFileName: val.name, idProductImg: val.id };
-						// thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-						// thisDropzone.options.thumbnail.call(thisDropzone, mockFile, val.dir + val.name);
-						// thisDropzone.options.complete.call(thisDropzone, mockFile);
-      //                   // thisDropzone.options.processing.call(thisDropzone, mockFile);
-      //                   thisDropzone.options.success.call(thisDropzone, mockFile);
 
 						thisDropzone.emit("addedfile", mockFile);
 						thisDropzone.emit("thumbnail", mockFile,  val.dir + val.name);
-						thisDropzone.emit("complete", mockFile);
 						thisDropzone.files.push(mockFile);
 					});
 				});

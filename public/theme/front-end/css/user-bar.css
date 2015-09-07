@@ -20,3 +20,7 @@
 	border-radius: 20px;
   	background: url(../img/textures/logo_x_pattern.png);
 }
+
+#images {
+	border: dashed 1px #CCC;
+}
