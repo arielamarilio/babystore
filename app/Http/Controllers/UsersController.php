@@ -42,12 +42,11 @@ class UsersController extends Controller {
 	public function internal_update(UsersRequest $request)
 	{
 
-		$oAuth = Auth::user();
-
-		$user = User::find($oAuth->id);
-		$user->name = $request->get('name');
-		$user->email = $request->get('email');
-		$user->phone = $request->get('phone');
+		$oAuth 			= Auth::user();
+		$user 			= User::find($oAuth->id);
+		$user->name 	= $request->get('name');
+		$user->email 	= $request->get('email');
+		$user->phone 	= $request->get('phone');
 
 		if(!empty($request->get('password'))) {
 			$user->password = bcrypt($request->get('password'));

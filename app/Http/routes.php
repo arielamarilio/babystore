@@ -37,14 +37,16 @@ Route::group(['prefix'=>'marcas', 'where'=>['id'=>'[0-9]+']], function() {
 
 Route::group(['prefix'=>'produtos', 'where'=>['id'=>'[0-9]+']], function() {
 	Route::get('',['as'=>'products', 'uses'=>'ProductsController@index']);
+
 	Route::get('novo',['as'=>'products.create', 'uses'=>'ProductsController@create']);
-	Route::post('store',['as'=>'products.store', 'uses'=>'ProductsController@store']);
 	Route::get('{id}/remover',['as'=>'products.destroy', 'uses'=>'ProductsController@destroy']);
 	Route::get('{id}/editar',['as'=>'products.edit', 'uses'=>'ProductsController@edit']);
 	Route::post('update',['as'=>'products.update', 'uses'=>'ProductsController@internal_update']);
 
 	Route::get('upload',['as'=>'products.upload', 'uses'=>'ProductsController@upload_get']);
 	Route::post('upload',['as'=>'products.upload', 'uses'=>'ProductsController@upload_post']);
+	
+	Route::post('remove_upload',['as'=>'products.upload', 'uses'=>'ProductsController@remove_upload']);
 });
 
 Route::group(['prefix'=>'meus_dados', 'where'=>['id'=>'[0-9]+']], function() {

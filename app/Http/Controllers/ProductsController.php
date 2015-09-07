@@ -31,13 +31,11 @@ class ProductsController extends Controller {
 
 	public function create(Request $request)
 	{
-		$categories = Categories::all(['id', 'name']);
-		$brands 	= Brands::all(['id', 'name']);
 
 		$product 	= new Products();
 		$product->save();
 
-		return view('products.create', ['categories' => $categories, 'brands' => $brands, 'product' => $product]);
+		return redirect()->route('products.edit', [$product->id]);
 	}
 
 	public function store(ProductsRequest $request)
@@ -56,6 +54,7 @@ class ProductsController extends Controller {
 		$product->monetary_discount 	= (!empty($request->get('monetary_discount'))) ? $request->get('monetary_discount') : 0; 
 		$product->percentage_discount 	= (!empty($request->get('percentage_discount'))) ? $request->get('percentage_discount') : 0;
 		$product->situation 			= $request->get('situation');
+		$product->price 				= $request->get('state');
 		$product->user_id 				= $user->id;
 		$product->save();
 
@@ -84,6 +83,7 @@ class ProductsController extends Controller {
 		}
 
 		return redirect()->route('products');
+	
 	}
 
 	public function internal_update(ProductsRequest $request)
@@ -120,6 +120,9 @@ class ProductsController extends Controller {
 		if(!empty($request->get('situation')))
 			$product->situation = $request->get('situation');
 
+		if(!empty($request->get('size')))
+			$product->size = $request->get('size');
+
 		$delivery_method = $request->get('delivery_method');
 		if(!empty($delivery_method)){
 			
@@ -138,7 +141,9 @@ class ProductsController extends Controller {
 
 	public function upload_get()
 	{
+
 		return view('products.upload_get');
+
 	}
 
 	public function upload_post() {
@@ -159,23 +164,17 @@ class ProductsController extends Controller {
 
 		// $file = Input::file('file');
 
-  //       $extension 	= File::extension($file['name']);
-  //       $directory 	= public_path() . '/images/products/';
-  //       $filename 	= sha1(time().time()).".{$extension}";
+		// $extension 	= File::extension($file['name']);
+		// $directory 	= public_path() . '/images/products/';
+		// $filename 	= sha1(time().time()).".{$extension}";
 
-  //       $upload_success = Input::upload('file', $directory, $filename);
+		// $upload_success = Input::upload('file', $directory, $filename);
 
-  //       if( $upload_success ) {
-  //       	return Response::json('success', 200);
-  //       } else {
-  //       	return Response::json('error', 400);
-  //       }
-
-
-
-
-
-
+		// if( $upload_success ) {
+		// 	return Response::json('success', 200);
+		// } else {
+		// 	return Response::json('error', 400);
+		// }
 
 
 		$path = public_path() . '/images/products/';
@@ -190,18 +189,32 @@ class ProductsController extends Controller {
 
 		if($upload_success)
 			echo "OK!";
+	
+	}
+
+	public function remove_upload() {
+
+		echo "Entrou aqui";
+		die();
+		
 	}
 
 	public function destroy($id)
 	{
 		Products::find($id)->delete();
 		return redirect()->route('products');
+	
 	}
 
 	public function edit($id)
 	{
-		$products = Products::find($id);
-		return view('products.edit', compact('products'));
+
+		$categories = Categories::all(['id', 'name']);
+		$brands 	= Brands::all(['id', 'name']);
+		$product 	= Products::find($id);
+
+		return view('products.edit', ['categories' => $categories, 'brands' => $brands, 'product' => $product]);
+
 	}
 
 
@@ -230,6 +243,7 @@ class ProductsController extends Controller {
 		}
 		$product->save();
 		return redirect()->route('products');
+	
 	}
 
 }
