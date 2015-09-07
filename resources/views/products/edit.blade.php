@@ -9,20 +9,31 @@
 
 <div class="basic-login">
 
-	<h3 class="heading_a uk-margin-bottom">Cadastrar produtos</h3>
+	<div class="col-md-6">
+		<h1>Meu produto</h1>	
+	</div>
+	<div class="col-md-6" style="text-align: right;">
+		<a href="{{ route('products') }}" id="salvar" onclick="javascript:save();" class="btn btn-warning btn-lg">
+			<span class="fa fa-reply-all"></span> Voltar aos meus produtos
+		</a>
+	</div>
+
+	<br /><br />
 
 	{!! Form::open(array('route' => ['products.update'], 'id' => 'product_form', 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal', 'files'=>true)) !!}
 
 		<input type="hidden" name="id" value="{{ $product->id }}" > 
 		<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 
+		<br /><br />
+
 		<div class="uk-form-row">
 			<div class="md-input-wrapper <?php if(!empty($product->title)) { echo "md-input-filled"; } ?>">
-				<label>Título	:</label>
+				<label>Título do produto:</label>
 				<input type="text" class="md-input" name="title" onblur="javascript:save();" value="{{ $product->title }}">
 				<span class="md-input-bar"></span>
 
-				<span class="uk-form-help-block">Dê um título amigável</span>
+				<span class="uk-form-help-block">Dê um título amigável ao seu produto</span>
 			</div>
 		</div>
 
@@ -30,7 +41,7 @@
 			<div class="uk-grid" data-uk-grid-margin>
                 <div class="uk-width-medium-5-10">
 
-                	<label>Categoria:</label>
+                	<label>Categoria do produto:</label>
                 	<select id="categorie_id" name="categorie_id" data-md-selectize onchange="javascript:save();">
                         <option value="">Selectione ...</option>
                         @foreach($categories as $item)
@@ -40,17 +51,12 @@
 
                     <br/>
 
-                    <label>Marca:</label>
-                	<select id="brand_id" name="brand_id" data-md-selectize onchange="javascript:save();">
-                        <option value="">Selectione ...</option>
-                        @foreach($brands as $item)
-							<option value="{{$item->id}}" <?php if($product->brand_id == $item->id) { echo "selected"; } ?> >{{$item->name}}</option>
-						@endforeach
-                    </select>
+                    <label>Marca do produto:</label>
+                    <input type="text" class="md-input" name="brand" onblur="javascript:save();" value="{{ $product->brand }}">
 
                     <br>
 
-                    <label>Estado:</label>
+                    <label>Estado do produto:</label>
 	                <select id="state" name="state" data-md-selectize onchange="javascript:save();">
                 		<option value="">Selectione ...</option>
                         <option value="1" <?php if($product->state == '1') { echo "selected"; } ?> >Novo</option>
@@ -61,22 +67,13 @@
 
 				</div>
 				<div class="uk-width-medium-5-10">
-					<label for="radio">Sexo</label>
+					<label>Tamanho do produto:</label>
+                	<input type="text" class="md-input" name="size" onblur="javascript:save();" value="{{ $product->size }}">
+                	<span class="uk-form-help-block">Use letras ou números</span>
 
-					<br />
+                    <br />
 
-					<input type="radio" name="gender" id="gender_1" value="male" <?php if($product->gender == 'male') { echo "checked"; } ?> onclick="javascript:save();" data-md-icheck />
-                    <label for="gender_1" class="inline-label">Masculino</label>
-
-                    <input type="radio" name="gender" id="gender_2" value="female" <?php if($product->gender == 'female') { echo "checked"; } ?> onclick="javascript:save();" data-md-icheck />
-                    <label for="gender_2" class="inline-label">Feminino</label>
-
-					<input type="radio" name="gender" id="gender_3" value="both" <?php if($product->gender == 'both') { echo "checked"; } ?> onclick="javascript:save();" data-md-icheck />
-                    <label for="gender_3" class="inline-label">Ambos</label>
-
-                    <br /><br />
-
-                    <label>Preço original:</label>
+                    <label>Preço original do produto:</label>
                 	<input type="text" class="md-input" name="original_price" id="original_price" value="<?php if(!empty($product->original_price)) { echo "R$ " . number_format($product->original_price, 2, ",", "."); } ?>" onblur="javascript:save();">
 					<span class="md-input-bar"></span>
 
@@ -84,7 +81,7 @@
 
 					<br />
 
-					<label>Preço de venda:</label>
+					<label>Preço de venda do produto:</label>
                 	<input type="text" class="md-input" name="sale_price" id="sale_price" value="<?php if(!empty($product->sale_price)) { echo "R$ " . number_format($product->sale_price, 2, ",", "."); } ?>" onblur="javascript:save();">
 					<span class="md-input-bar"></span>
 
@@ -98,13 +95,22 @@
         	 <div class="uk-grid" data-uk-grid-margin>
 	            <div class="uk-width-medium-5-10">
 	            	<div class="uk-form-row">
-	            		<label>Tamanho:</label>
-	                	<input type="text" class="md-input" name="size" onblur="javascript:save();" value="{{ $product->size }}">
-	                	<span class="uk-form-help-block">Use letras ou números</span>
+	            		<label for="radio">Serve em:</label>
+
+						<br />
+
+						<input type="radio" name="gender" id="gender_1" value="male" <?php if($product->gender == 'male') { echo "checked"; } ?> onclick="javascript:save();" data-md-icheck />
+	                    <label for="gender_1" class="inline-label">Meninos</label>
+
+	                    <input type="radio" name="gender" id="gender_2" value="female" <?php if($product->gender == 'female') { echo "checked"; } ?> onclick="javascript:save();" data-md-icheck />
+	                    <label for="gender_2" class="inline-label">Meninas</label>
+
+						<input type="radio" name="gender" id="gender_3" value="both" <?php if($product->gender == 'both') { echo "checked"; } ?> onclick="javascript:save();" data-md-icheck />
+	                    <label for="gender_3" class="inline-label">Ambos</label>
 
 	                	<br />
 
-			            <label>Detalhes:</label>
+			            <label>Detalhes do produto:</label>
 			            <textarea cols="30" rows="1" name="description" class="md-input" onblur="javascript:save();">{{ $product->description }}</textarea>
 			            <span class="uk-form-help-block">Conte-nos um pouco sobre o seu produto</span>
 			        </div>
@@ -130,20 +136,24 @@
                 <label for="delivery_method_3" class="inline-label">Entrega em domicílio</label>
 
                 <input type="checkbox" name="delivery_method[]" id="delivery_method_4" data-md-icheck value="4" <?php if(strpos($product->delivery_method, '4') !== false) { echo "checked"; } ?> onchange="javascript:save();" />
-                <label for="delivery_method_4" class="inline-label">Outro</label>
+                <label for="delivery_method_4" class="inline-label">A negociar</label>
             </p>
             <span class="uk-form-help-block">Você pode selecionar mais de um local de entrega</span>
         </div>	
 
         <hr />
 
-        <div class="uk-form-row ">
-			<a href="#salvar" id="salvar" onclick="javascript:save();" class="btn btn-success btn-lg">
-				<span class="glyphicon glyphicon-ok"></span> Salvar alterações
+        <div class="uk-form-row " style="text-align: right;">
+			<a href="#salvar" id="salvar" onclick="javascript:save();" class="btn btn-info btn-lg">
+				<span class="glyphicon glyphicon-floppy-saved"></span> Salvar alterações
 			</a>
 
-			<a href="#" class="btn btn-danger btn-lg">
-				<span class="glyphicon glyphicon-remove"></span> Excluir produto
+			<a href="{{ route('products') }}" id="salvar" onclick="javascript:save();" class="btn btn-success btn-lg">
+				<span class="glyphicon glyphicon-floppy-saved"></span> Finalizar alterações
+			</a>
+
+			<a href="{{ route('products.destroy', ['id' => $product->id]) }}" class="btn btn-danger btn-lg">
+				<span class="glyphicon glyphicon-trash"></span> Excluir produto
 			</a>
 		</div>
 

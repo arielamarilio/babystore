@@ -120,39 +120,10 @@
                     </div>
 
                     <div class="col-sm-6" style="text-align: right;">
-
                         <a href="{{ route('products') }}" class="btn btn-sq btn-info"><i class="fa fa-tags fa-5x"></i><br/>Produtos</a>
-                        <a href="#" class="btn btn-sq btn-info"><i class="fa fa-dollar fa-5x"></i><br/>Vendas</a>
-                        <a href="{{ route('products') }}" class="btn btn-sq btn-info"><i class="fa fa-shopping-cart fa-5x"></i><br/>Compras</a>
                         <a href="#" class="btn btn-sq btn-info"><i class="fa fa-comments fa-5x"></i><br/>Mensagens</a>
-
-                        <p>
-
-                        <!--
-                        <a href="#" class="btn btn-sq btn-primary">
-                        <i class="fa fa-user fa-5x"></i><br/>
-                        Demo Primary <br>Button
-                        </a>
-                        <a href="#" class="btn btn-sq btn-success">
-                        <i class="fa fa-user fa-5x"></i><br/>
-                        Demo Success <br>Button
-                        </a>
-                        <a href="#" class="btn btn-sq btn-info">
-                        <i class="fa fa-user fa-5x"></i><br/>
-                        Demo Info <br>Button
-                        </a>
-                        <a href="#" class="btn btn-sq btn-warning">
-                        <i class="fa fa-user fa-5x"></i><br/>
-                        Demo Warning <br>Button
-                        </a>
-                        <a href="#" class="btn btn-sq btn-danger">
-                        <i class="fa fa-user fa-5x"></i><br/>
-                        Demo Danger <br>Button
-                        </a>
-                        -->
-                        </p>
-
-
+                        <a href="#" class="btn btn-sq btn-info"><i class="fa fa-bullhorn fa-5x"></i><br/>Minha loja</a>
+                        <a href="{{ route('users.edit') }}" class="btn btn-sq btn-info"><i class="fa fa-user fa-5x"></i><br/>Meus dados</a>
                     </div>
                 </div>
             </div>

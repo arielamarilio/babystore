@@ -18,8 +18,9 @@ class CreateProductsTable extends Migration
             $table->integer('categorie_id')->unsigned()->nullable();
             $table->foreign('categorie_id')->references('id')->on('categories')->onDelete('set null');
 
-            $table->integer('brand_id')->unsigned()->nullable();
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('set null');
+            // $table->integer('brand_id')->unsigned()->nullable();
+            // $table->foreign('brand_id')->references('id')->on('brands')->onDelete('set null');
+            $table->string('brand', 455)->nullable();            
 
             $table->string('title', 455)->nullable();
             $table->text('description')->nullable();

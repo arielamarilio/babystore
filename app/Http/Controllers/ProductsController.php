@@ -2,10 +2,10 @@
 
 use App\Http\Requests;
 
-use App\Brands;
 use App\Categories;
 use App\Products;
 use App\ProductsImages;
+use App\User;
 
 use Auth;
 
@@ -26,7 +26,10 @@ class ProductsController extends Controller {
 
 	public function index()
 	{
-		$products = Products::all();
+		$userAuth	= Auth::user();
+		$oUser 		= User::find($userAuth->id);
+		$products 	= $oUser->products;
+		
 		return view('products.index', ['products' => $products]);
 	}
 
@@ -40,10 +43,9 @@ class ProductsController extends Controller {
 	public function edit($id)
 	{
 		$categories = Categories::all(['id', 'name']);
-		$brands 	= Brands::all(['id', 'name']);
 		$product 	= Products::find($id);
 
-		return view('products.edit', ['categories' => $categories, 'brands' => $brands, 'product' => $product]);
+		return view('products.edit', ['categories' => $categories, 'product' => $product]);
 	}
 
 	public function internal_update(ProductsRequest $request)
@@ -56,8 +58,8 @@ class ProductsController extends Controller {
 		if(!empty($request->get('categorie_id')))
 			$product->categorie_id = $request->get('categorie_id');
 
-		if(!empty($request->get('brand_id')))
-			$product->brand_id = $request->get('brand_id');
+		if(!empty($request->get('brand')))
+			$product->brand = $request->get('brand');
 
 		if(!empty($request->get('title')))
 			$product->title = $request->get('title');
@@ -99,7 +101,8 @@ class ProductsController extends Controller {
 		
 	}
 
-	public function get_images($idProduct){
+	public function get_images($idProduct)
+	{
 		$product 		= Products::find($idProduct);
 		$product_images = $product->images;
 		$data_return 	= array();
@@ -117,7 +120,8 @@ class ProductsController extends Controller {
 		echo json_encode($data_return);
 	}
 
-	public function upload_post(ProductsRequest $request) {
+	public function upload_post(ProductsRequest $request) 
+	{
 
 		ini_set("display_errors", true);
 
@@ -150,7 +154,8 @@ class ProductsController extends Controller {
 	
 	}
 
-	public function remove_upload(ProductsRequest $request) {
+	public function remove_upload(ProductsRequest $request) 
+	{
 
 		$idProduct 		= $request->get('idProduct');
 		$serverFileName = $request->get('serverFileName');
@@ -167,6 +172,14 @@ class ProductsController extends Controller {
 
 	public function destroy($id)
 	{
+		$product 		= Products::find($id);
+		$product_images = $product->images;
+
+		foreach ($product_images as $image) {
+			unlink(public_path() . '/images/products/' . $id . '/' . $image->name);
+			ProductsImages::find($image->id)->delete();
+		}
+
 		Products::find($id)->delete();
 		return redirect()->route('products');
 	

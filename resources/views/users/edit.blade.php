@@ -4,10 +4,12 @@
 
 <div class="basic-login">
 
+	<h1>Meus dados</h1>
+
+	<br />
+
 	{!! Form::open(array('route' => ['users.internal_update'], 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) !!}
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-		<h3 class="heading_a uk-margin-bottom">Meus dados</h3>
 
 		@if (count($errors) > 0)
 		    <div class="alert alert-danger">
@@ -55,8 +57,8 @@
 			</div>
 		</div>
 
-		<div class="uk-form-row">
-			<button type="submit" class="btn btn-default btn-lg btn-block">
+		<div class="uk-form-row " style="text-align: right;">
+			<button type="submit" class="btn btn-info btn-lg">
 				Alterar dados
 			</button>
 		</div>
