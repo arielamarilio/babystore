@@ -170,22 +170,24 @@
         var token 				= "{{ Session::getToken() }}";
         var idProduct 			= "{{ $product->id }}";
         Dropzone.autoDiscover 	= false;
-        var previewTemplate	= '<div class="dz-preview dz-image-preview">';
-        previewTemplate = previewTemplate + '<div class="dz-image"><img data-dz-thumbnail /></div> ';
-        previewTemplate = previewTemplate + '<div class="dz-error-message"></div>';
+
+		var previewTemplate	= '<div class="dz-preview dz-image-preview">';
+		previewTemplate = previewTemplate + '<div class="dz-image"><img data-dz-thumbnail /><div class="dz-error-mark"><img src="/images/error.png" /></div></div> ';
+		previewTemplate = previewTemplate + '<div class="dz-error-message" style="margin-top: 20px;"><span data-dz-errormessage></span></div>';
 		previewTemplate = previewTemplate + '</div>';
 
         var myDropzone = new Dropzone("div#images", {
             url: _UrlAdd,
-            maxFilesize: '5',
+            maxFilesize: '2',
             acceptedFiles: '.jpeg,.jpg,.png,.gif',
 		    dictDefaultMessage: '',
-		    dictFileTooBig:  'O arquivo é muito grande, o tamanho máximo permitido é de 5Mb.',
+		    dictFileTooBig:  'O arquivo é muito grande, o tamanho máximo permitido é de 2Mb.',
 		    dictCancelUpload:  'Cancelar o envio',
 		    dictCancelUploadConfirmation:  'Tem certeza de que deseja cancelar este carregamento?',
-		    dictRemoveFile:  'Remover arquivo',
+		    dictRemoveFile:  'Excluir',
 		    addRemoveLinks: true,
 		    previewTemplate: previewTemplate,
+		    // previewsContainer: "#previews",
 			removedfile: function(file) {
 				if(typeof file.serverFileName != 'undefined') {
 					$.ajax({
@@ -207,11 +209,24 @@
 					file.idProductImg 	= serverReturn.idProductImg;
                 });
 
+                this.on("complete", function(file, server_return) {
+					// console.log('complete');
+                });
+
 				$.getJSON(_UrlGetExistingImg, function(data) {
 					$.each(data, function(index, val) {
+
 						var mockFile = { name: val.name, size: val.size, serverFileName: val.name, idProductImg: val.id };
-						thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-						thisDropzone.options.thumbnail.call(thisDropzone, mockFile, val.dir + val.name);
+						// thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+						// thisDropzone.options.thumbnail.call(thisDropzone, mockFile, val.dir + val.name);
+						// thisDropzone.options.complete.call(thisDropzone, mockFile);
+      //                   // thisDropzone.options.processing.call(thisDropzone, mockFile);
+      //                   thisDropzone.options.success.call(thisDropzone, mockFile);
+
+						thisDropzone.emit("addedfile", mockFile);
+						thisDropzone.emit("thumbnail", mockFile,  val.dir + val.name);
+						thisDropzone.emit("complete", mockFile);
+						thisDropzone.files.push(mockFile);
 					});
 				});
 			},
